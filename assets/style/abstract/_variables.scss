@@ -1,0 +1,23 @@
+$primary:#4379FF;
+$light-primary:#F7FAFC;
+$secondary: #092540;
+$light-secondary:#3c4257;
+$success:#3ECF8E;
+$error:#C52D2D;
+$themes:(default:(errorTextColor:$error,
+    successTextColor:$success,
+    linkTextColor:$primary,
+    textColor:$secondary,
+    labelTextColor:$light-secondary,
+    backgroundColor:$light-primary,
+    containerBackgroundColor:white,
+    textBackgroundColor:white,
+    successButtonBackground:$success,
+    buttonColor:white,
+    emphasizedTextColor:$primary,
+    verySmallBoxShadow:(rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px),
+    smallBoxShadow:(rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.08) 0px 2px 5px 0px),
+    boxShadow:(0 0 0 1px rgba(136, 152, 170, .1), 0 15px 35px 0 rgba(49, 49, 93, .1), 0 5px 15px 0 rgba(0, 0, 0, .08))));

@@ -1,0 +1,33 @@
+{
+  "name": "patron-front",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build --modern=server",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@nuxt/http": "^0.6.1",
+    "@nuxtjs/device": "^1.2.7",
+    "@nuxtjs/pwa": "^3.0.2",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@nuxtjs/toast": "^3.3.1",
+    "@nuxtjs/universal-storage": "^0.5.5",
+    "core-js": "^3.6.5",
+    "node-sass": "^5.0.0",
+    "nuxt": "^2.14.6",
+    "nuxt-webfontloader": "^1.1.0",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
+    "vue-lazy-hydration": "^2.0.0-beta.4",
+    "vuex": "^3.6.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/fontawesome": "^1.1.2"
+  }
+}

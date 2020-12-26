@@ -1,0 +1,24 @@
+.nav {
+  &--desktop {
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    @include themify($themes) {
+      box-shadow: themed('smallBoxShadow');
+      background: themed("containerBackgroundColor");
+    }
+
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+
+    &__container {
+      padding: 0 1rem;
+    }
+  }
+
+}

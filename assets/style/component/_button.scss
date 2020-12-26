@@ -1,0 +1,64 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  white-space: nowrap;
+
+  &--primary {
+    background: $primary;
+    color: white;
+
+    &--light {
+      background: $primary;
+      color: $light-primary;
+    }
+  }
+
+  &--secondary {
+    background: $secondary;
+    color: white;
+
+  }
+
+  &--green {
+    background: $success;
+    color: white;
+  }
+
+  &--very_round {
+    border-radius: 100px;
+  }
+
+  &--round {
+    border-radius: 5px;
+  }
+
+  &--normal {
+    height: 3.5rem;
+    padding: 0 2.5rem;
+    font-size: 1.6rem;
+    // width: 100px;
+  }
+
+  &--shadow {
+    @include themify($themes) {
+      box-shadow: themed("smallBoxShadow");
+    }
+  }
+
+  &--small {
+    height: 3rem;
+    padding: 0 2rem;
+    font-size: 1.4rem;
+    white-space: nowrap;
+    // width: 100px;
+  }
+
+  &--big {
+    height: 4rem;
+    padding: 0 3rem;
+    font-size: 1.8rem;
+    // width: 100px;
+  }
+}

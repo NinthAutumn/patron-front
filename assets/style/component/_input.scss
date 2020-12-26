@@ -1,0 +1,40 @@
+.input {
+  border: none;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+
+  &--normal {
+    height: 4rem;
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 0 1.2rem;
+    border-radius: 0.5rem;
+
+    &:active,
+    &:focus {
+      border-radius: 0.5rem;
+    }
+  }
+
+  &--white {
+    @include themify($themes) {
+      background-color: themed("containerBackgroundColor");
+      box-shadow: themed("verySmallBoxShadow");
+      // box-shadow: themed('smallBoxShadow');
+    }
+  }
+
+  &--primary {
+    border: 1px solid rgb(247, 247, 247);
+
+    @include themify($themes) {
+      background-color: themed("backgroundColor");
+    }
+  }
+}
