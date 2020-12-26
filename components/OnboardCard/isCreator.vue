@@ -8,7 +8,10 @@
         color="primary--light"
         >支援をしてもらう</button-card
       >
-      <button-card color="secondary" size="big" style="justify-content: center"
+      <button-card
+        color="secondary"
+        size="big"
+        style="margin-bottom: 1rem; justify-content: center"
         >支援をする</button-card
       >
     </div>

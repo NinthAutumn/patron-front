@@ -1,7 +1,8 @@
 <template>
   <div class="onboarding">
     <card-style>
-      <is-creator v-if="step === 0"></is-creator>
+      <is-creator v-if="step === 'is-creator'"></is-creator>
+      <payout-method v-else-if="step === 'payout-method'"></payout-method>
     </card-style>
   </div>
 </template>
@@ -11,9 +12,10 @@ import IsCreator from "./isCreator";
 export default {
   components: {
     IsCreator,
+    PayoutMethod: () => import("./PayoutMethod"),
   },
   data: () => ({
-    step: 0,
+    step: "payout-method",
   }),
 };
 </script>

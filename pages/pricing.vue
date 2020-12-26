@@ -1,5 +1,5 @@
 <template>
-  <div class="service-page container-padding">
+  <main class="service-page container-padding">
     <h1>サービス一覧</h1>
     <div class="service-page__service" id="sub">
       <h2>年・月間会員制サブスクリプション</h2>
@@ -98,7 +98,7 @@
         <span>ストライプ決済手数料は 3.6%</span>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <style lang="scss">

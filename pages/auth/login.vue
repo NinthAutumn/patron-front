@@ -1,7 +1,7 @@
 <template>
-  <div id="login-page" class="container-padding">
+  <section id="login-page" class="container-padding">
     <login-card></login-card>
-  </div>
+  </section>
 </template>
 
 <script >

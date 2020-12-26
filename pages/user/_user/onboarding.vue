@@ -1,7 +1,7 @@
 <template>
-  <div class="container-padding">
+  <section class="container-padding">
     <onboard-card></onboard-card>
-  </div>
+  </section>
 </template>
 
 <script>
