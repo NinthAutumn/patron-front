@@ -24,7 +24,7 @@ export default {
       type: String,
       default: "very_round",
     },
-    icon: String,
+    icon: Object,
     size: {
       type: String,
       default: "normal",

@@ -2,7 +2,7 @@
   <div class="login-card">
     <card-style class="login-card__form">
       <form v-if="email" @submit.prevent="submitHandler">
-        <h1 class="login-card__title">アカウントを作成</h1>
+        <h1 class="login-card__title">アカウントを作る</h1>
         <label for>Eメール</label>
         <input
           type="text"

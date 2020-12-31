@@ -1,3 +1,20 @@
+input[type="date"] {
+  // border: none;
+  // display: block;
+
+  // @include themify($themes) {
+  //   box-shadow: themed("verySmallBoxShadow");
+  // }
+
+  // height: 4rem;
+  // font-size: 1.5rem;
+  font-family: inherit;
+  // border-radius: 0.5rem;
+  // padding: 0 1.2rem;
+  // margin-top: 0.5rem;
+  // margin-bottom: 1rem;
+}
+
 .input {
   border: none;
   box-sizing: border-box;
@@ -9,17 +26,23 @@
     outline: 0;
   }
 
+  &--textarea {
+    height: 10rem;
+    font-size: 1.3rem;
+    width: 100%;
+    font-weight: 400;
+    padding: 1rem 1.2rem;
+    border-radius: 0.5rem;
+    font-family: inherit;
+
+  }
+
   &--normal {
     height: 4rem;
     font-size: 1.5rem;
     width: 100%;
     padding: 0 1.2rem;
     border-radius: 0.5rem;
-
-    &:active,
-    &:focus {
-      border-radius: 0.5rem;
-    }
   }
 
   &--white {

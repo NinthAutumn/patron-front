@@ -33,7 +33,13 @@
         </div>
       </div>
 
-      <div class="onboard-payout__stripe"></div>
+      <div class="onboard-payout__stripe" v-if="stripe">
+        <button-card
+          color="secondary"
+          :icon="{ prefix: 'fab', iconName: 'cc-stripe' }"
+          >ストライプと繋げる</button-card
+        >
+      </div>
       <button-card style="margin-left: auto; margin-top: 1rem"
         >次へ進む</button-card
       >
@@ -93,7 +99,10 @@ export default {
       color: $primary;
       cursor: pointer;
     }
-    max-width: 20rem;
+    @media screen and (min-width: 701px) {
+      max-width: 20rem;
+    }
+
     font-size: 1.6rem;
   }
   .question-tip {
@@ -102,10 +111,18 @@ export default {
     cursor: pointer;
   }
   &__actions {
-    margin-top: 2rem;
+    // margin-top: 2rem;
   }
   &__or {
     margin: 0 1rem;
+  }
+  &__stripe {
+    display: flex;
+    justify-content: center;
+    // padding
+    // display:flex;
+    // justify-content: center;
+    // align-items: center;
   }
   &__paypals {
     display: flex;
@@ -139,6 +156,9 @@ export default {
     // margin-left: auto;
     margin-top: 0.5rem;
     color: $light-secondary;
+    @media screen and (max-width: 750px) {
+      text-align: center;
+    }
   }
   &__icon {
     color: #0070ba;

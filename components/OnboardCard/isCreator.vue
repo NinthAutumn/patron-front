@@ -28,7 +28,7 @@ export default {};
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 2rem;
+    // margin-top: 2rem;
   }
 }
 </style>

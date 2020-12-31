@@ -15,10 +15,18 @@
     }
   }
 
+  &__icon {
+    margin-right: 1rem;
+  }
+
   &--secondary {
     background: $secondary;
     color: white;
+  }
 
+  &--stripe {
+    background: #5469d4;
+    color: white;
   }
 
   &--green {

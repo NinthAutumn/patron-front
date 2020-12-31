@@ -29,7 +29,8 @@ export default {
   plugins: [
     '~/plugins/style',
     '~/plugins/layout',
-    '~/plugins/intercept'
+    '~/plugins/intercept',
+    '~/plugins/cropper'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -183,6 +184,13 @@ export default {
       pages: true,
       commons: true
     },
+    preset: {
+      // postcss-preset-env 設定を変更します
+      autoprefixer: {
+        grid: true,
+        flexbox: true
+      }
+    }
   },
   server: {
     host: "0.0.0.0",

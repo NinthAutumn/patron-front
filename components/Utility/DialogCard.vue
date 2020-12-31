@@ -28,18 +28,20 @@ export default {
 .dialog-card {
   $self: &;
 
-  @media screen and (max-width: 450px) {
-    body {
-      height: 100%;
-    }
-
-    &__content {
-      width: 100% !important;
-      height: 100% !important;
-      padding: 1rem !important;
-      border-radius: 0 !important;
-    }
-  }
+  // @media screen and (max-width: 700px) {
+  //   body {
+  //     height: 100%;
+  //   }
+  //   &__container {
+  //   }
+  //   &__content {
+  //     width: 100% !important;
+  //     align-self: flex-end;
+  //     // height: 100% !important;
+  //     padding: 1rem !important;
+  //     border-radius: 0 !important;
+  //   }
+  // }
 
   &--disabled {
     visibility: hidden;
