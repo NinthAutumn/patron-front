@@ -14,8 +14,8 @@
           </nuxt-link>
           <div class="nav__profile" @click="$router.push('/auth/login')" v-else>
             <img
-              height="55"
-              width="55"
+              height="50"
+              width="50"
               :src="item.img"
               @error="onError"
               class="nav__avatar"

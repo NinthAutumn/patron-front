@@ -85,7 +85,7 @@ export default {
         );
         if (error) return this.$toast.error(error);
         this.$toast.success("アカウント作成に成功しました");
-        this.$router.push(`/user/${user.id}/onboarding`);
+        this.$router.push(`/user/onboarding`);
       } catch (error) {
         console.log(error);
         return this.$toast.error("サーバーで問題がありました");
