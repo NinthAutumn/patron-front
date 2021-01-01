@@ -73,6 +73,9 @@ export default {
   }),
 
   methods: {
+    stepHandler(step) {
+      this.$emit("step", step);
+    },
     toggleStripeTipe() {
       this.stripeTip = !this.stripeTip;
     },

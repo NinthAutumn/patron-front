@@ -1,10 +1,19 @@
 <template>
   <div class="onboarding">
     <card-style>
-      <is-creator v-if="step === 'is-creator'"></is-creator>
-      <payout-method v-else-if="step === 'payout-method'"></payout-method>
-      <project-setting v-else-if="step === 'project-setting'"></project-setting>
-      <user-profile v-else-if="step === 'user-profile'"></user-profile>
+      <is-creator @step="setStep" v-if="step === 'is-creator'"></is-creator>
+      <payout-method
+        @step="setStep"
+        v-else-if="step === 'payout-method'"
+      ></payout-method>
+      <project-setting
+        @step="setStep"
+        v-else-if="step === 'project-setting'"
+      ></project-setting>
+      <user-profile
+        @step="setStep"
+        v-else-if="step === 'user-profile'"
+      ></user-profile>
     </card-style>
   </div>
 </template>
@@ -21,20 +30,23 @@ export default {
   },
   computed: {
     ...mapGetters({
-      creator: "creator/getCreator",
+      project: "project/getProject",
     }),
   },
   methods: {
+    setStep(step) {
+      this.step = step;
+    },
     endHandler(user) {
       if (user) {
         this.$router.push(`/home`);
       } else {
-        this.$router.push(`/creator/${this.creator.id}`);
+        this.$router.push(`/creator/${this.project.url}`);
       }
     },
   },
   data: () => ({
-    step: "user-profile",
+    step: "is-creator",
   }),
 };
 </script>

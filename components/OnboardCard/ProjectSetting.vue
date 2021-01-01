@@ -47,7 +47,11 @@
           />
         </div>
         <div class="project-setting__card">
-          <button-card style="margin-left: auto">次へ進む</button-card>
+          <button-card
+            @click="stepHandler('payout-method')"
+            style="margin-left: auto"
+            >次へ進む</button-card
+          >
         </div>
       </div>
     </div>
@@ -61,12 +65,18 @@ export default {
     step: 1,
     form: {
       url: "",
+      title: "",
+      description: "",
+      crowd_funding: false,
     },
   }),
   methods: {
     selectedHandler(input) {
       this.step = 2;
       this.input = input;
+    },
+    stepHandler(step) {
+      this.$emit("step", step);
     },
   },
   components: {

@@ -2,7 +2,7 @@
   <div class="claim-url">
     <div class="claim-url__container">
       <div class="claim-url__initial">Onjin.jp/</div>
-      <input type="text" v-model="url" />
+      <input type="text" v-model="url" placeholder="ユーザー名" />
       <button-card @click="clickHandler" class="claim-url__button" size="small"
         >選ぶ</button-card
       >

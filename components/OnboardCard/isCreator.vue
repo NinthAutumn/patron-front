@@ -6,12 +6,14 @@
         size="big"
         style="margin-bottom: 2rem; justify-content: center"
         color="primary--light"
+        @click="buttonHandler(true)"
         >支援をしてもらう</button-card
       >
       <button-card
         color="secondary"
         size="big"
         style="margin-bottom: 1rem; justify-content: center"
+        @click="buttonHandler"
         >支援をする</button-card
       >
     </div>
@@ -19,7 +21,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    buttonHandler(creator) {
+      if (creator) {
+        this.$emit("step", "project-setting");
+      } else {
+        this.$emit("step", "user-profile");
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss">
