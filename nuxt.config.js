@@ -1,7 +1,7 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'patron-front',
+    title: 'オンジン',
     meta: [{
         charset: 'utf-8'
       },
@@ -126,13 +126,14 @@ export default {
               'faThLarge',
               'faPlus',
               'faMinus',
-              'faFont',
               'faTint',
               'faCreditCard',
               'faPenNib',
               'faSlidersH',
               'faThList',
-              'faStream'
+              'faStream',
+              'faGifts',
+              'faShoppingCart'
             ]
           },
           {

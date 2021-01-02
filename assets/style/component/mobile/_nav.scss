@@ -20,21 +20,47 @@
   &__avatar {
     width: 5rem;
     height: 5rem;
+    border-radius: 100px;
+    overflow: none;
+
+    @include themify($themes) {
+      box-shadow: themed('boxShadow');
+    }
+
+    &--small {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 100px;
+      overflow: none;
+    }
   }
+
 
   &__profile {
     position: absolute;
     bottom: 20%;
-
   }
 
-  &__profile img {
-    border-radius: 100px;
+  &__creator {
+    display: flex;
+    align-items: center;
+    width: 9rem;
+    border-radius: 10rem;
 
     @include themify($themes) {
       box-shadow: themed('boxShadow');
     }
   }
+
+  &__username {
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__profile {}
+
 
   &__icon {
     display: flex;
@@ -72,6 +98,15 @@
     justify-content: center;
     font-size: 2.2rem;
     position: relative;
+
+    &--creator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      position: relative;
+      height: 4.5rem;
+    }
   }
 
   span {

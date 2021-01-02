@@ -2,7 +2,6 @@
 
 <script>
 export default {
-  async fetch() {},
   layout(ctx) {
     return ctx.isMobile ? "Mobile/project" : "DesktopNav";
   },

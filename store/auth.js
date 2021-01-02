@@ -19,7 +19,9 @@ export const actions = {
     try {
       const res = await this.$http.$post('/v1/auth/register', form);
       commit('setAuth', res.user);
-      this.$storage.setCookie('Authorization', res.jwt.jwt)
+      this.$storage.setCookie('Authorization', res.jwt.jwt);
+      this.$storage.setCookie("RefreshToken", res.jwt.refresh_token)
+      this.$http.setToken(res.jwt.jwt, 'Bearer')
       return {
         error: false,
         user: res.user
@@ -36,6 +38,36 @@ export const actions = {
       }
     }
   },
+  async refreshToken({
+    commit
+  }) {
+    try {
+      const res = await this.$http.$patch('/v1/auth/refreshToken', {
+        refresh_token: this.$storage.getCookie('RefreshToken')
+      })
+      commit('setAuth', res.user);
+      this.$storage.setCookie("RefreshToken", res.jwt.refresh_token);
+      this.$storage.setCookie('Authorization', res.jwt.jwt);
+      this.$http.setToken(res.jwt.jwt, 'Bearer')
+    } catch (error) {
+      return {
+        error: error.message
+      }
+    }
+  },
+  async fetchUserSelf({
+    commit
+  }) {
+    try {
+      const res = await this.$http.$get("/v1/users/self");
+      commit('setAuth', res.user);
+    } catch (error) {
+      return {
+        error
+      }
+    }
+
+  },
   async login({
     commit
   }, form) {
@@ -43,6 +75,7 @@ export const actions = {
       const res = await this.$http.$post("/v1/auth/login", form);
       commit('setAuth', res.user);
       this.$storage.setCookie('Authorization', res.jwt.jwt)
+      this.$http.setToken(res.jwt.jwt, 'Bearer')
       return {
         error: false
       }
