@@ -1,10 +1,10 @@
-<template></template>
+<template>
+  <div class="project-main"></div>
+</template>
 
 <script>
-export default {
-  async fetch() {},
-  layout(ctx) {
-    return ctx.isMobile ? "Mobile/project" : "DesktopNav";
-  },
-};
+export default {};
 </script>
+
+<style lang="scss">
+</style>

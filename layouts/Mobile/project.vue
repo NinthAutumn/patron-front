@@ -48,7 +48,7 @@ export default {
         {
           name: "サブスク",
           icon: "fire",
-          link: `plans`,
+          link: `/${this.$route.params.project}/plans`,
         },
         {
           name: "投げ銭",
@@ -73,6 +73,9 @@ export default {
       user: "auth/getAuth",
       auth: "auth/isAuth",
     }),
+  },
+  methods: {
+    onError() {},
   },
   head() {
     return {

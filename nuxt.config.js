@@ -30,7 +30,10 @@ export default {
     '~/plugins/style',
     '~/plugins/layout',
     '~/plugins/intercept',
-    '~/plugins/cropper'
+    '~/plugins/cropper',
+    '~/plugins/paypal',
+    '~/plugins/paypal-sub',
+    '~/plugins/stripe'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

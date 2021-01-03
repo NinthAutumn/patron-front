@@ -38,6 +38,9 @@ export default {
       auth: "auth/isAuth",
     }),
   },
+  methods: {
+    onError() {},
+  },
   created() {
     let nav = "user";
     if (this.$store.getters["auth/isAuth"]) {

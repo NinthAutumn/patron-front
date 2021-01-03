@@ -11,9 +11,11 @@ export const mutations = {
 }
 export const actions = {
   async fetchProject({
-    commit
+    commit,
+    state
   }, url) {
     try {
+      if (url === state.project.page_url) return;
       const res = await this.$http.$get(`/v1/projects/${url}`);
       commit('setProject', res.project);
       return {
@@ -21,15 +23,17 @@ export const actions = {
       }
     } catch (error) {
       return {
-        error
+        error: error.response.data.error
       }
     }
   },
-  async isProjectUrlAvailable({}, url) {
+  async isPageUrlAvailable({}, url) {
     try {
       const res = await this.$http.$get(`/v1/projects/${url}/isAvailable`);
+
       return res.available;
     } catch (error) {
+      this.$toast.error(error.response.data.error);
       return false;
     }
   }

@@ -2,7 +2,6 @@
   <div class="project-setting">
     <div class="project-setting__container">
       <h1>プロジェクトの設定</h1>
-
       <claim-url @selected="selectedHandler" v-if="step === 1"></claim-url>
       <div v-else class="project-setting__main">
         <div class="project-setting__card">
@@ -71,11 +70,21 @@ export default {
     },
   }),
   methods: {
-    selectedHandler(input) {
+    async selectedHandler(input) {
+      const available = await this.$store.dispatch(
+        "project/isPageUrlAvailable",
+        input
+      );
+      if (!available) {
+        return;
+      }
       this.step = 2;
       this.input = input;
     },
-    stepHandler(step) {
+    async stepHandler(step) {
+      if (step === "payout-method") {
+        await this.$store.dispatch("project/postProject", form);
+      }
       this.$emit("step", step);
     },
   },

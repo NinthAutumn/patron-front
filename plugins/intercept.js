@@ -16,7 +16,12 @@ export default function ({
       alert('Request Error!')
     }
     if (error.statusCode === 401) {
-
+      error.response = {
+        data: {
+          error: "貴方はこの行為の権限がありません"
+        }
+      }
+      return Promise.reject(error);
     }
     // Tip: error.response will be undefined if the connection dropped to the server
     // Tip: You can use error.response.data to get response message
