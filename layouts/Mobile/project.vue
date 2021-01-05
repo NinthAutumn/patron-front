@@ -2,9 +2,13 @@
   <div>
     <nav class="project-nav">
       <div class="project-nav__header">
-        <fa icon="arrow-left" @click="$router.push('/')"></fa>
+        <fa icon="times" @click="$router.push('/')"></fa>
       </div>
+      <nuxt-link :to="'/' + $route.params.project" class="project-nav__home">
+        <fa icon="home"></fa>
+      </nuxt-link>
     </nav>
+    <nuxt />
     <nav class="nav nav--mobile">
       <div class="nav__container">
         <div class="nav__menu">
@@ -34,7 +38,6 @@
         </div>
       </div>
     </nav>
-    <nuxt />
   </div>
 </template>
 
@@ -89,21 +92,51 @@ export default {
 
 <style lang="scss">
 .project-nav {
+  z-index: 1;
   &__header {
     font-size: 1.4rem;
+    z-index: inherit;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    height: 3.5rem;
+    width: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // width: 100%;
+    @include themify($themes) {
+      box-shadow: themed("boxShadow");
+      background: white;
+    }
+    border-radius: 100px;
   }
-  position: fixed;
-  top: 5px;
-  left: 5px;
-  height: 3.5rem;
-  display: flex;
-  align-items: center;
-  // width: 100%;
-  @include themify($themes) {
-    box-shadow: themed("boxShadow");
+  &__home.nuxt-link-exact-active {
+    color: $primary !important;
   }
-  border-radius: 100px;
-  // justify-content: center;
-  padding: 0 1rem;
+  &__home {
+    font-size: 1.4rem;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 3.5rem;
+    width: 3.5rem;
+    // padding: 0 1rem;
+    z-index: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    text-decoration: none;
+    @include themify($themes) {
+      box-shadow: themed("boxShadow");
+      background: white;
+    }
+    color: black !important;
+    // font-weight: bold;
+  }
+
+  //
+  // padding: 0 1rem;
 }
 </style>

@@ -3,36 +3,49 @@
     <card-style class="login-card__form">
       <form v-if="email" @submit.prevent="submitHandler">
         <h1 class="login-card__title">アカウントを作る</h1>
-        <label for>Eメール</label>
+        <label for="email">Eメール</label>
         <input
-          type="text"
+          type="email"
           class="input input--normal input--white"
           placeholder="Eメール"
           aria-autocomplete="email"
+          required
+          name="email"
           autocomplete="email"
           v-model="form.email"
         />
-        <label for>ユーザー名</label>
+        <label for="username">ユーザー名</label>
         <input
           type="text"
+          minlength="2"
+          maxlength="30"
+          name="username"
           class="input input--normal input--white"
           placeholder="ユーザー名"
           aria-autocomplete="username"
+          required
           autocomplete="username"
           v-model="form.username"
         />
-        <label for>パスワード</label>
+        <label for="password">パスワード</label>
         <input
           class="input input--normal input--white"
           type="password"
+          minlength="6"
+          maxlength="255"
+          name="password"
           aria-autocomplete="current-password"
           placeholder="パスワード"
+          required
           v-model="form.password"
         />
         <label for>パスワードを確認</label>
         <input
           class="input input--normal input--white"
           type="password"
+          required
+          minlength="6"
+          maxlength="255"
           aria-autocomplete="current-password"
           placeholder="パスワードをもう一度"
           v-model="form.password_confirmation"

@@ -33,7 +33,8 @@ export default {
     '~/plugins/cropper',
     '~/plugins/paypal',
     '~/plugins/paypal-sub',
-    '~/plugins/stripe'
+    '~/plugins/stripe',
+    "~/plugins/click"
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -107,11 +108,9 @@ export default {
               'faMugHot',
               'faEdit',
               'faCheck',
-              'faRainbow',
-              'faThumbsDown',
               'faSort',
-              'faVenusMars',
               'faAddressCard',
+              'faShare',
               'faCalendar',
               'faCaretDown',
               'faQuestionCircle',
@@ -136,7 +135,8 @@ export default {
               'faThList',
               'faStream',
               'faGifts',
-              'faShoppingCart'
+              'faShoppingCart',
+              'faInfoCircle'
             ]
           },
           {
@@ -155,7 +155,8 @@ export default {
               'faStripeS',
               'faDiscord',
               'faPatreon',
-              "faLine"
+              "faLine",
+              "faInstagram"
             ]
           }
         ]
@@ -170,7 +171,12 @@ export default {
       pathRewrite: {
         '^/v1/': '/'
       },
-
+    },
+    "/file": {
+      target: "https://img.jpmtl.com/",
+      pathRewrite: {
+        '^/file': '/'
+      },
     }
   },
   webfontloader: {

@@ -15,6 +15,10 @@ input[type="date"] {
   // margin-bottom: 1rem;
 }
 
+input.input:invalid {
+  border: 1px solid $error;
+}
+
 .input {
   border: none;
   box-sizing: border-box;
