@@ -49,8 +49,8 @@
             >詳細を見る</button-card
           >
           <img
-            height="121"
-            width="166.9"
+            height="174"
+            width="239"
             class="service-list__img service-list__img--shop"
             :src="require('~/assets/svg/shop-big.svg')"
             alt="ショップを描写している画像"

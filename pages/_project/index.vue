@@ -11,8 +11,14 @@
     </card-style>
 
     <card-style>
-      <h2>情報</h2>
-      <p>{{ project.description }}</p>
+      <div class="project-main__about">
+        <h2>情報</h2>
+        <p>{{ project.description }}</p>
+      </div>
+    </card-style>
+
+    <card-style>
+      <h2></h2>
     </card-style>
   </div>
 </template>

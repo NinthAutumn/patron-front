@@ -8,7 +8,11 @@
         熱中的ファンたちに月・年額・投げ銭であなたの活動を新たな方法でサポートを貰おう！
         サービス料金最大無料で、いつでも引出し可能！
       </h3>
-      <button-card size="normal" id="main-button">
+      <button-card
+        size="normal"
+        id="main-button"
+        @click="$router.push('/auth/login')"
+      >
         始める
         <img
           height="14"
@@ -95,6 +99,7 @@ export default {
     @include themify($themes) {
       color: themed("successTextColor");
     }
+    margin-bottom: 0;
     // color: ;
   }
 }
