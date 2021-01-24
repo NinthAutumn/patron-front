@@ -2,7 +2,10 @@
   <main class="service-page container-padding">
     <card-style class="service-page__container">
       <h1>サービス一覧</h1>
-      <div class="service-page__service" id="sub">
+      <div
+        class="service-page__service"
+        id="sub"
+      >
         <h2>年・月間会員制サブスクリプション</h2>
         <p>
           オンジンでは誰でもいつでも自分のサブスクリプション・ファンクラブ・サロンを始めることができます
@@ -22,8 +25,7 @@
             marginRight: $device.isMobile ? '0' : 'auto',
             marginLeft: $device.isMobile ? 'auto' : '0',
           }"
-          >今から始める</button-card
-        >
+        >今から始める</button-card>
         <div class="service-page__disclaimer">
           *決済料金は決済方法によって異なります
           <br />
@@ -31,14 +33,16 @@
             ペイパル決済手数料は
             <a
               href="https://www.paypal.com/jp/webapps/mpp/merchant/paypal-seller-fees"
-              >こちらで見る</a
-            >
+            >こちらで見る</a>
             <br />
           </span>
           <span>ストライプ決済手数料は 3.6%</span>
         </div>
       </div>
-      <div class="service-page__service" id="tip">
+      <div
+        class="service-page__service"
+        id="tip"
+      >
         <h2>投げ銭・チップ</h2>
         <p>
           オンジンでは誰でもいつでもだれから
@@ -55,8 +59,7 @@
           @click="$router.push('/pricing#tip')"
           size="small"
           color="green"
-          >今から始める</button-card
-        >
+        >今から始める</button-card>
         <div class="service-page__disclaimer">
           *決済料金は決済方法によって異なります
           <br />
@@ -64,19 +67,23 @@
             ペイパル決済手数料は
             <a
               href="https://www.paypal.com/jp/webapps/mpp/merchant/paypal-seller-fees"
-              >こちらで見る</a
-            >
+            >こちらで見る</a>
             <br />
           </span>
           <span>ストライプ決済手数料は 3.6%</span>
         </div>
       </div>
-      <div class="service-page__service" id="shop">
+      <div
+        class="service-page__service"
+        id="shop"
+      >
         <h2>ショップ</h2>
         <img
           class="service-page__img service-page__img--half service-page__img--right"
           :src="require('~/assets/svg/shop-big.svg')"
           alt
+          style="margin-left:0.5rem;"
+          height="150"
         />
         <p>
           オンジンでは自分のデジタルショップをかんたんに誰でもが開設することが可能です。手数料たったの5%+決済手数料*。
@@ -87,8 +94,7 @@
           @click="$router.push('/pricing#tip')"
           size="small"
           color="primary"
-          >今から始める</button-card
-        >
+        >今から始める</button-card>
         <div class="service-page__disclaimer">
           *決済料金は決済方法によって異なります
           <br />
@@ -96,8 +102,7 @@
             ペイパル決済手数料は
             <a
               href="https://www.paypal.com/jp/webapps/mpp/merchant/paypal-seller-fees"
-              >こちらで見る</a
-            >
+            >こちらで見る</a>
             <br />
           </span>
           <span>ストライプ決済手数料は 3.6%</span>

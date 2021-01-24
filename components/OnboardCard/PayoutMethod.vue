@@ -3,7 +3,10 @@
     <h1>支援の受け方を選択・記入</h1>
     <div class="onboard-payout__actions">
       <div class="onboard-payout__switch">
-        <switch-card v-model="paypal" label="ペイパル"></switch-card>
+        <switch-card
+          v-model="paypal"
+          label="ペイパル"
+        ></switch-card>
       </div>
       <div v-if="paypal">
         <h3>ペイパルアカウントでダイレクトに投げ銭を受け取ることができます</h3>
@@ -21,28 +24,34 @@
           <button-card>ビジネスアカウント</button-card>
         </div>
         <div class="onboard-payout__info">
-          オンジンアカウントのEメールと異なることがあります。 <br />
-          サブスク・ショップの利用はペイパルビジネスアカウントに繋げる必要があります。
+          オンジンアカウントのEメールと異なることがあります。
+          <br />サブスク・ショップの利用はペイパルビジネスアカウントに繋げる必要があります。
         </div>
       </div>
 
       <div class="onboard-payout__switch">
-        <switch-card v-model="stripe" label="ストライプ"></switch-card>
+        <switch-card
+          v-model="stripe"
+          label="ストライプ"
+        ></switch-card>
         <div class="question-tip">
-          <fa icon="question-circle" @click.stop="toggleStripeTipe"></fa>
+          <fa
+            icon="question-circle"
+            @click.stop="toggleStripeTipe"
+          ></fa>
         </div>
       </div>
 
-      <div class="onboard-payout__stripe" v-if="stripe">
+      <div
+        class="onboard-payout__stripe"
+        v-if="stripe"
+      >
         <button-card
           color="secondary"
           :icon="{ prefix: 'fab', iconName: 'cc-stripe' }"
-          >ストライプと繋げる</button-card
-        >
+        >ストライプと繋げる</button-card>
       </div>
-      <button-card style="margin-left: auto; margin-top: 1rem"
-        >次へ進む</button-card
-      >
+      <button-card style="margin-left: auto; margin-top: 1rem">次へ進む</button-card>
     </div>
     <dialog-card v-if="stripeTip">
       <div class="stripe-tip">
@@ -50,7 +59,10 @@
           <div class="stripe-tip__left-icon">
             <fa icon="question-circle"></fa>
           </div>
-          <div class="stripe-tip__right-icon" @click="toggleStripeTipe">
+          <div
+            class="stripe-tip__right-icon"
+            @click="toggleStripeTipe"
+          >
             <fa icon="times"></fa>
           </div>
         </div>
@@ -131,7 +143,7 @@ export default {
     display: flex;
 
     align-items: center;
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: 500px) {
       flex-direction: column;
     }
   }
@@ -159,7 +171,7 @@ export default {
     // margin-left: auto;
     margin-top: 0.5rem;
     color: $light-secondary;
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: 500px) {
       text-align: center;
     }
   }
