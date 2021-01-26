@@ -29,9 +29,18 @@
         </div>
       </div>
     </div>
-    <div class="desktop-home__container">
+    <div
+      class="desktop-home__container"
+      style="margin-bottom:3rem;"
+    >
       <div class="desktop-home__card">
         <service-cards></service-cards>
+      </div>
+    </div>
+    <div class="desktop-home__container">
+      <div class="desktop-home__card">
+        <h2>好きなクリエーターを見つける</h2>
+        <search-card></search-card>
       </div>
     </div>
   </div>
@@ -39,10 +48,12 @@
 <script>
 import ClaimUrl from "@/components/ClaimUrl";
 import ServiceCards from "@/components/ServiceCards";
+import SearchCard from "@/components/SearchDesktop";
 export default {
   components: {
     ClaimUrl,
     ServiceCards,
+    SearchCard,
   },
   methods: {
     claimHandler(url) {},
@@ -57,7 +68,7 @@ export default {
     &--secondary {
       background: $secondary;
       margin-top: -10px;
-      height: 30rem;
+      height: 35rem;
     }
     @media screen and (max-width: 1036px) {
       padding: 0 2rem;
@@ -88,7 +99,13 @@ export default {
     font-size: 1.8rem;
     font-weight: 400;
     color: white;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+  }
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    text-align: center;
   }
   h1 {
     @include themify($themes) {

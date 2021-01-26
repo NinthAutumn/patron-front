@@ -73,12 +73,12 @@ export default {
     }
     @include themify($themes) {
       background: themed("containerBackgroundColor");
-      box-shadow: themed("verySmallBoxShadow");
+      //   box-shadow: themed("verySmallBoxShadow");
     }
     cursor: pointer;
     padding: 1rem;
-    border-radius: 1.5rem;
-    height: 12rem;
+    border-radius: 3rem;
+    height: 11rem;
     // width: 100%;
     // max-width: 25rem;
     display: flex;
