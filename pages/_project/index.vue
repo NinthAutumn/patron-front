@@ -38,4 +38,10 @@ export default {
 </script>
 
 <style lang="scss">
+.project-main {
+  @media screen and (min-width: 501px) {
+    max-width: var(--desktop-width);
+    width: 100%;
+  }
+}
 </style>

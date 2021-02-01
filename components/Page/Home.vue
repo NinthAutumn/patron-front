@@ -1,15 +1,15 @@
 <template>
   <div class="desktop-home">
     <div class="desktop-home__container desktop-home__container--secondary">
-      <div class="desktop-home__card desktop-home__card--main">
+      <div class="desktop-home__card page-container desktop-home__card--main">
         <div class="desktop-home__content">
           <h1 class="color--success">自分の情熱・趣味に資金を供給しよう！</h1>
           <h3>
-            熱中的ファンたちに月・年額・投げ銭であなたの活動を新たな方法でサポートを貰おう！
+            熱狂的ファンたちに月額・年額・投げ銭であなたの活動を新たな方法でサポートを貰おう！
             投げ銭で資金・支援集めにおいて当社のサービス料金は
             <strong
-              class="color color--primary"
-            >ずっと無料</strong> そして、いつでも無料で引出し可能。サブスクリプションは業界最安サービス料金3%から利用が可能です。
+              class="color color--error"
+            >ずっと0%</strong> そして、いつでも無料で引出し可能。サブスクリプションは業界最安サービス料金3%から利用が可能です。
           </h3>
           <div class="desktop-home__claim">
             <claim-url
@@ -33,14 +33,43 @@
       class="desktop-home__container"
       style="margin-bottom:3rem;"
     >
-      <div class="desktop-home__card">
+      <div class="desktop-home__card page-container">
         <service-cards></service-cards>
       </div>
     </div>
     <div class="desktop-home__container">
-      <div class="desktop-home__card">
+      <div class="desktop-home__card page-container">
         <h2>好きなクリエーターを見つける</h2>
         <search-card></search-card>
+      </div>
+    </div>
+    <div class="desktop-home__container">
+      <div class="desktop-home__card page-container">
+        <h2>オンジンのはじめ方</h2>
+        <div
+          class="flex-divider"
+          style="display:flex;"
+        >
+          <img
+            :src="require('~/assets/svg/big-list.svg')"
+            alt
+          />
+          <step-list></step-list>
+        </div>
+      </div>
+    </div>
+    <div class="desktop-home__container page-container">
+      <div
+        class="desktop-home__card"
+        style="margin:2rem 0;"
+      >
+        <h2>オンジンを始める</h2>
+        <claim-url
+          button-size="big"
+          size="large"
+          button-placeholder="始める"
+          @selected="claimHandler"
+        ></claim-url>
       </div>
     </div>
   </div>
@@ -49,11 +78,13 @@
 import ClaimUrl from "@/components/ClaimUrl";
 import ServiceCards from "@/components/ServiceCards";
 import SearchCard from "@/components/SearchDesktop";
+import StepList from "@/components/StepList";
 export default {
   components: {
     ClaimUrl,
     ServiceCards,
     SearchCard,
+    StepList,
   },
   methods: {
     claimHandler(url) {},
@@ -79,8 +110,6 @@ export default {
     align-items: flex-end;
   }
   &__card {
-    max-width: 1100px;
-    width: 100rem;
     padding: 2rem 0;
     padding-bottom: 0;
     &--main {

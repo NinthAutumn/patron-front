@@ -1,13 +1,23 @@
 <template>
   <div class="project-page">
-    <project-header :project="project"></project-header>
-    <nuxt-child :project="project"></nuxt-child>
+    <div class="page-container">
+      <project-header
+        :project="project"
+        v-if="$device.isMobile"
+      ></project-header>
+      <desktop-header
+        :project="project"
+        v-else
+      ></desktop-header>
+      <nuxt-child :project="project"></nuxt-child>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import ProjectHeader from "@/components/ProjectHeader";
+// import DesktopHeader from "@/components/Page/Project/Header";
 export default {
   computed: {
     ...mapGetters({
@@ -19,6 +29,7 @@ export default {
   },
   components: {
     ProjectHeader,
+    DesktopHeader: () => import("@/components/Page/Project/Header"),
   },
   async fetch() {
     await this.$store.dispatch(

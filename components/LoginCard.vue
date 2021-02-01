@@ -29,14 +29,14 @@
             type="submit"
             class="button button--primary button--very_round button--normal"
             style="margin-left: auto"
-          >
-            ログインする
-          </button>
+          >ログインする</button>
         </div>
       </form>
-      <nuxt-link to="/auth/register" tag="p" class="login-card__register"
-        >アカウントを作る</nuxt-link
-      >
+      <nuxt-link
+        to="/auth/register"
+        tag="p"
+        class="login-card__register"
+      >アカウントを作る</nuxt-link>
 
       <social-login></social-login>
     </card-style>
@@ -82,6 +82,7 @@ export default {
     margin: 2rem 0;
     text-align: center;
     font-size: 1.4rem;
+    cursor: pointer;
     @include themify($themes) {
       color: themed("linkTextColor");
     }
@@ -95,6 +96,7 @@ export default {
     margin: 1rem 0;
   }
   &__password-forgot {
+    cursor: pointer;
     margin: 2rem 0;
     text-align: center;
     font-size: 1.2rem;

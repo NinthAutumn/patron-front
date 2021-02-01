@@ -1,7 +1,12 @@
 <template>
   <div class="project-header">
     <div class="project-header__banner">
-      <img height="150" width="100%" :src="project.banner" alt="" />
+      <img
+        height="150"
+        width="100%"
+        :src="project.banner"
+        alt
+      />
     </div>
     <div class="project-header__content container-padding">
       <card-style style="width: 100%">
@@ -9,7 +14,7 @@
           <img
             class="project-header__avatar avatar avatar--normal"
             :src="project.avatar"
-            alt=""
+            alt
             width="100"
             height="100"
           />

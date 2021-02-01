@@ -4,10 +4,7 @@
       class="mobile-home__container mobile-home__container--secondary container-padding"
     >
       <h1 class="color--success">自分の情熱・趣味に資金を供給しよう！</h1>
-      <h3>
-        熱中的ファンたちに月・年額・投げ銭であなたの活動を新たな方法でサポートを貰おう！
-        サービス料金最大無料で、いつでも引出し可能！
-      </h3>
+      <h3>熱中的ファンたちに月・年額・投げ銭であなたの活動を新たな方法でサポートを貰おう！</h3>
       <button-card
         size="normal"
         id="main-button"
@@ -23,7 +20,7 @@
         />
       </button-card>
       <img
-        height="114"
+        height="100"
         width="143"
         id="main-svg"
         :src="require('~/assets/svg/home-1.svg')"
@@ -44,18 +41,31 @@
     </div>
     <div
       class="mobile-home__container mobile-home__container--large container-padding"
-    ></div>
+    >
+      <h2 style="margin-bottom:2rem;">オンジンのはじめ方</h2>
+      <step-list></step-list>
+    </div>
+    <div
+      class="mobile-home__container mobile-home__container--large container-padding"
+    >
+      <h2 style="margin-bottom:2rem;">オンジンを始める</h2>
+      <claim-url></claim-url>
+    </div>
   </div>
 </template>
 <script>
 // import LazyHyrdrate from "vue-lazy-hydration";
 import SearchCard from "@/components/Search";
 import ServiceList from "@/components/ServiceList";
+import StepList from "@/components/StepList";
+import ClaimUrl from "@/components/ClaimUrl";
 export default {
   components: {
     // LazyHydrate,
     SearchCard,
     ServiceList,
+    StepList,
+    ClaimUrl,
   },
 };
 </script>
