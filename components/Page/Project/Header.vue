@@ -6,23 +6,28 @@
           class="banner"
           height="200"
           :src="'https://via.placeholder.com/1200x200'"
+          lazy
           alt
         />
       </div>
     </div>
-
-    <project-sidebar :project="project"></project-sidebar>
+    <div class="dp-header__content">
+      <project-sidebar :project="project"></project-sidebar>
+      <project-desc :project="project"></project-desc>
+    </div>
   </div>
 </template>
 
 <script>
 import ProjectSidebar from "@/components/ProjectSidebar";
+import ProjectDesc from "@/components/ProjectDesc";
 export default {
   props: {
     project: Object,
   },
   components: {
     ProjectSidebar,
+    ProjectDesc,
   },
 };
 </script>
@@ -41,6 +46,9 @@ export default {
     height: 200px;
   }
   img {
+  }
+  &__content {
+    display: flex;
   }
   &__image {
     width: 100%;

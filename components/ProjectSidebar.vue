@@ -2,7 +2,7 @@
   <div class="project-sidebar">
     <div class="project-sidebar__content">
       <img
-        :src="'https://via.placeholder.com/100'"
+        :src="project.avatar"
         alt
         height="100"
         width="100"
@@ -34,9 +34,11 @@ export default {
 .project-sidebar {
   padding: 1rem 2rem;
   height: 50rem;
-  width: 30rem;
+  max-width: 30rem;
+  min-width: 30rem;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   border-radius: 1rem;
   transform: translateY(-100px);
   justify-content: space-between;

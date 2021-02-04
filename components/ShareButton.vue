@@ -6,7 +6,11 @@
     >
       <fa icon="share"></fa>
     </div>
-    <div class="share-button__list" v-if="modal" v-click-outside="toggleModal">
+    <div
+      class="share-button__list"
+      v-if="modal"
+      v-click-outside="toggleModal"
+    >
       <div
         v-for="item of list"
         :key="item.name"
@@ -95,11 +99,13 @@ export default {
     display: flex;
   }
   &__main {
+    cursor: pointer;
     @include themify($themes) {
-      box-shadow: themed("boxShadow");
+      // box-shadow: themed("boxShadow");
       // color:themed('')
-      background-color: $primary-back;
-      color: themed("linkTextColor");
+      // background-color: $primary-back;
+      // color: themed("linkTextColor");
+      background: #eee;
     }
   }
 }
