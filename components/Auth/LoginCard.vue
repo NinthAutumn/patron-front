@@ -3,52 +3,49 @@
     <card-style class="login-card__form">
       <form @submit.prevent="submitHandler">
         <h1 class="login-card__title">ログイン</h1>
-        <label for>Eメール・ユーザー名</label>
+        <label for>{{$t('form.credentials')}}</label>
         <input
           type="text"
           class="input input--normal input--white"
-          placeholder="Eメール・ユーザー名"
+          :placeholder="$t('form.credentials')"
           aria-autocomplete="email username"
           autocomplete="email username"
           v-model="form.credential"
         />
-        <label for>パスワード</label>
+        <label for>{{$t('form.password')}}</label>
         <input
           class="input input--normal input--white"
           type="password"
           aria-autocomplete="current-password"
           autocomplete="current-password"
-          placeholder="パスワード"
+          :placeholder="$t('form.password')"
           v-model="form.password"
         />
-        <p class="login-card__password-forgot">パスワードを忘れた</p>
+        <p
+          class="login-card__password-forgot"
+        >{{$t('basic.forgotten_password')}}</p>
 
         <!-- <input-style type="password" theme="white"></input-style> -->
         <div class="flex-divider">
           <button
             type="submit"
-            class="button button--primary button--very_round button--normal"
+            class="button button--primary button--very-round button--normal"
             style="margin-left: auto"
-          >ログインする</button>
+          >{{$t('basic.login')}}</button>
         </div>
       </form>
       <nuxt-link
         to="/auth/register"
         tag="p"
         class="login-card__register"
-      >アカウントを作る</nuxt-link>
+      >{{$t('basic.create_account')}}</nuxt-link>
 
-      <social-login></social-login>
+      <auth-social-login></auth-social-login>
     </card-style>
   </div>
 </template>
 <script >
-import SocialLogin from "./SocialLogin.vue";
-
 export default {
-  components: {
-    SocialLogin,
-  },
   data: () => ({
     form: {
       credential: "",
@@ -58,12 +55,16 @@ export default {
   methods: {
     async submitHandler() {
       try {
-        const { error } = await this.$store.dispatch("auth/login", this.form);
+        const { error, user } = await this.$store.dispatch(
+          "auth/login",
+          this.form
+        );
         if (error) return this.$toast.error(error);
-        this.$toast.success("ログインに成功しました");
+        if (!user.onboarded) return this.$router.push("/user/onboarding");
+        this.$toast.success(this.$t("notification.login_success"));
         this.$router.go(-1);
       } catch (error) {
-        return this.$toast.error("サーバーで問題がありました");
+        return this.$toast.error(this.$t("notification.internal_error"));
       }
     },
   },
@@ -84,7 +85,7 @@ export default {
     font-size: 1.4rem;
     cursor: pointer;
     @include themify($themes) {
-      color: themed("linkTextColor");
+      color: var(---link-text-color);
     }
     font-weight: bold;
   }

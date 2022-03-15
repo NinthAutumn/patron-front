@@ -1,21 +1,19 @@
 <template>
   <div class="is-creator">
-    <h1>オンジンで。。。</h1>
+    <h1>{{$t('onboarding.at_onjin')}}</h1>
     <div class="is-creator__actions">
       <button-card
         size="big"
         style="margin-bottom: 2rem; justify-content: center"
         color="primary--light"
         @click="buttonHandler(true)"
-        >支援をしてもらう</button-card
-      >
+      >{{$t('onboarding.to_get_support')}}</button-card>
       <button-card
         color="secondary"
         size="big"
         style="margin-bottom: 1rem; justify-content: center"
         @click="buttonHandler"
-        >支援をする</button-card
-      >
+      >{{$t('onboarding.to_support')}}</button-card>
     </div>
   </div>
 </template>

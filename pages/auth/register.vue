@@ -1,13 +1,16 @@
 <template>
-  <section id="register-page" class="container-padding">
-    <register-card></register-card>
+  <section
+    id="register-page"
+    class="container-padding"
+  >
+    <auth-register-card></auth-register-card>
   </section>
 </template>
 
 <script>
 export default {
-  components: {
-    RegisterCard: () => import("@/components/RegisterCard.vue"),
+  async mounted() {
+    this.$social.load();
   },
 };
 </script>

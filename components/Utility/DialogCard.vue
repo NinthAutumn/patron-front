@@ -3,7 +3,10 @@
 <template functional>
   <div class="dialog-card">
     <div class="dialog-card__container">
-      <div class="dialog-card__content" :style="{ ...customStyle }">
+      <div
+        class="dialog-card__content"
+        :style="{ ...customStyle }"
+      >
         <slot></slot>
       </div>
     </div>
@@ -91,7 +94,7 @@ export default {
     overscroll-behavior: none;
 
     @include themify($themes) {
-      background: themed("textBackgroundColor");
+      background: var(---text-background-color);
       box-shadow: themed("boxShadowBig");
     }
 

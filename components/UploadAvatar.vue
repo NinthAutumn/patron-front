@@ -10,19 +10,25 @@
       />
     </div>
 
-    <div class="upload-avatar__upload" v-if="!edit">
+    <div
+      class="upload-avatar__upload"
+      v-if="!edit"
+    >
       <label
         for="file-upload"
         class="custom-file-upload"
         v-text="
           !loading
             ? !selected
-              ? 'アバターを変更'
-              : `アバターを投稿`
+              ? $t('form.change_avatar')
+              : $t('form.upload_avatar')
             : '投稿中...'
         "
       >
-        <fa style="margin-right: 0.5rem" icon="plus"></fa>
+        <fa
+          style="margin-right: 0.5rem"
+          icon="plus"
+        ></fa>
       </label>
       <input
         id="file-upload"
@@ -31,7 +37,10 @@
         @change="onFileChange"
       />
     </div>
-    <div class="upload-avatar__edit" v-else-if="edit">
+    <div
+      class="upload-avatar__edit"
+      v-else-if="edit"
+    >
       <Cropper
         :src="selected"
         :stencilComponent="$options.components.CircleStencil"
@@ -84,10 +93,9 @@ export default {
       const url = window.URL.createObjectURL(this.file);
       this.selected = url;
       this.edit = !this.edit;
-      return;
       // const { url } = await this.upload(this.files);
-      // this.$emit("input", url);
-      // this.$emit("close");
+      this.$emit("input", this.file);
+      this.$emit("close");
     },
     onChange({ coordinates, canvas }) {
       canvas.toBlob((blob) => {

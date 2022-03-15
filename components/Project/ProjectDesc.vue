@@ -1,12 +1,13 @@
 <template>
   <div class="project-desc">
     <div class="project-desc__actions">
-      <h2>情報</h2>
+      <h2>Description</h2>
       <div class="flex-divider">
         <button-card
           color="primary--light"
+          class="project-desc__follow"
           style="margin-right:1rem;"
-        >フォローする</button-card>
+        >Follow</button-card>
         <share-button></share-button>
       </div>
     </div>
@@ -28,8 +29,13 @@
         class="project-desc__support"
         size="big"
         color="secondary"
-      >サポートする</button-card>
+        @click="support=true"
+      >Support Project</button-card>
     </div>
+    <project-support-modal
+      @close="support=false"
+      v-if="support"
+    ></project-support-modal>
   </div>
 </template>
 
@@ -37,6 +43,7 @@
 import ShareButton from "@/components/ShareButton";
 export default {
   data: () => ({
+    support: false,
     socialIcon: {
       facebook: { iconName: "facebook", prefix: "fab" },
       line: { iconName: "line", prefix: "fab" },
@@ -70,21 +77,29 @@ export default {
 <style lang="scss">
 .project-desc {
   padding: 1rem 2rem;
-  @include themify($themes) {
-    background: themed("containerBackgroundColor");
-  }
+
+  display: flex;
+  box-sizing: border-box;
+  max-width: 100%;
+
+  flex-direction: column;
+  background: var(--container-background-color);
+
+  border-radius: 1rem;
+  height: 30rem;
   .flex-divider {
     display: flex;
   }
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin-left: 1rem;
-  transform: translateY(-50px);
-  border-radius: 1rem;
-  height: 30rem;
+  &__follow {
+    @media screen and(max-width:750px) {
+      display: none;
+    }
+  }
   &__socials {
     display: flex;
+    @media screen and(max-width:750px) {
+      display: none;
+    }
   }
   &__social {
     font-size: 2rem;

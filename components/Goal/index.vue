@@ -7,7 +7,7 @@
       size="huge"
       :val="50"
     ></progress-bar>
-    <div>ゴール</div>
+    <div>Goal</div>
   </div>
 </template>
 

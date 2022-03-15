@@ -48,8 +48,9 @@
       >
         <button-card
           color="secondary"
+          @click="stripeHandler"
           :icon="{ prefix: 'fab', iconName: 'cc-stripe' }"
-        >ストライプと繋げる</button-card>
+        >Connect To Stripe</button-card>
       </div>
       <button-card style="margin-left: auto; margin-top: 1rem">次へ進む</button-card>
     </div>
@@ -85,6 +86,10 @@ export default {
   }),
 
   methods: {
+    async stripeHandler() {
+      const link = await this.$http.$post(`/v1/creators/stripe/link`);
+      // window.location.href = link.url;
+    },
     stepHandler(step) {
       this.$emit("step", step);
     },
@@ -111,7 +116,7 @@ export default {
       color: $secondary;
     }
     &__right-icon {
-      color: $primary;
+      color: var(--primary);
       cursor: pointer;
     }
     @media screen and (min-width: 701px) {

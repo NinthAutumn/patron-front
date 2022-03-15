@@ -3,14 +3,13 @@
     <div class="service-list__container">
       <lazy-hydrate on-idle>
         <div class="service-list__item service-list__item--sub">
-          <h2>年・月間会員制サブスク</h2>
+          <h2>{{$t('basic.all_subscription')}}</h2>
           <button-card
             @click="$router.push('/pricing#sub')"
             size="small"
             shadow
             color="secondary"
-            >詳細を見る</button-card
-          >
+          >{{$t('basic.read_more')}}</button-card>
           <img
             height="145"
             width="186"
@@ -22,13 +21,12 @@
       </lazy-hydrate>
       <lazy-hydrate when-visible>
         <div class="service-list__item service-list__item--tip">
-          <h2>投げ銭</h2>
+          <h2>{{$t('basic.donation')}}</h2>
           <button-card
             @click="$router.push('/pricing#tip')"
             size="small"
             color="green"
-            >詳細を見る</button-card
-          >
+          >{{$t('basic.read_more')}}</button-card>
           <img
             class="service-list__img"
             height="158"
@@ -40,14 +38,13 @@
       </lazy-hydrate>
       <lazy-hydrate when-visible>
         <div class="service-list__item service-list__item--shop">
-          <h2>ショップ</h2>
+          <h2>{{$t('basic.shop')}}</h2>
           <button-card
             @click="$router.push('/pricing#shop')"
             size="small"
             shadow
             color="primary"
-            >詳細を見る</button-card
-          >
+          >{{$t('basic.read_more')}}</button-card>
           <img
             height="174"
             width="239"
@@ -78,7 +75,7 @@ export default {
     }
     &__item {
       @include themify($themes) {
-        background: themed("textBackgroundColor");
+        background: var(---text-background-color);
         // box-shadow: themed('smallBoxShadow');
       }
       border-radius: 1rem;
@@ -96,7 +93,7 @@ export default {
     }
     h2 {
       @include themify($themes) {
-        color: themed("linkTextColor");
+        color: var(---link-text-color);
       }
       font-weight: bold;
     }

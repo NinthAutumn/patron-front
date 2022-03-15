@@ -4,25 +4,26 @@ export default {
     title: "オンジン",
     meta: [
       {
-        charset: "utf-8"
+        charset: "utf-8",
       },
       {
         name: "viewport",
-        content: "width=device-width, initial-scale=1"
+        content: "width=device-width, initial-scale=1",
       },
       {
         hid: "description",
         name: "description",
-        content: ""
-      }
+        content: "",
+      },
     ],
+    script: [{ src: "https://js.stripe.com/v3" }],
     link: [
       {
         rel: "icon",
         type: "image/x-icon",
-        href: "/favicon.ico"
-      }
-    ]
+        href: "/favicon.ico",
+      },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -37,31 +38,35 @@ export default {
     "~/plugins/paypal",
     "~/plugins/paypal-sub",
     "~/plugins/stripe",
-    "~/plugins/click"
+    "~/plugins/click",
+    "~/plugins/auth",
+    { src: "~/plugins/social", mode: "client" },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: false,
+  components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    "@nuxtjs/i18n",
     [
       "@nuxt/http",
       {
-        proxy: true
-      }
+        proxy: true,
+      },
     ],
     "@nuxtjs/style-resources",
     "@nuxtjs/device",
+
     "nuxt-webfontloader",
     [
       "@nuxtjs/toast",
       {
-        singleton: true
-      }
+        singleton: true,
+      },
     ],
     "@nuxtjs/universal-storage",
     [
@@ -146,12 +151,12 @@ export default {
               "faStream",
               "faGifts",
               "faShoppingCart",
-              "faInfoCircle"
-            ]
+              "faInfoCircle",
+            ],
           },
           {
             set: "@fortawesome/free-regular-svg-icons",
-            icons: ["faBookmark", "faHeart"]
+            icons: ["faBookmark", "faHeart"],
           },
           {
             set: "@fortawesome/free-brands-svg-icons",
@@ -167,56 +172,71 @@ export default {
               "faPatreon",
               "faLine",
               "faInstagram",
-              "faReddit"
-            ]
-          }
-        ]
-      }
+              "faReddit",
+            ],
+          },
+        ],
+      },
     ],
-    "@nuxtjs/pwa"
+    "@nuxtjs/pwa",
   ],
+  i18n: {
+    locales: [
+      {
+        code: "en",
+        file: "en-US.js",
+      },
+      {
+        code: "ja",
+        file: "ja-JP.js",
+      },
+    ],
+    lazy: true,
+    langDir: "~/lang/",
+    defaultLocale: "en",
+  },
   proxy: {
     "/v1/": {
       target: "http://localhost:5000/",
       pathRewrite: {
-        "^/v1/": "/"
-      }
+        "^/v1/": "/",
+      },
     },
     "/file": {
-      target: "https://img.jpmtl.com/",
+      target: process.env.S3_URL,
       pathRewrite: {
-        "^/file": "/"
-      }
-    }
+        "^/file": "/",
+      },
+    },
   },
   webfontloader: {
     google: {
-      families: ["Noto Sans JP:500&display=swap"] //Loads Lato font with weights 400 and 700
-    }
+      families: ["Noto Sans JP:500&display=swap"], //Loads Lato font with weights 400 and 700
+    },
   },
   styleResources: {
     scss: [
       "~/assets/style/abstract/_variables.scss",
-      "~/assets/style/abstract/_functions.scss"
-    ]
+      "~/assets/style/abstract/_functions.scss",
+    ],
   },
   build: {
     // extractCSS: true,
     splitChunks: {
       layouts: false,
       pages: true,
-      commons: true
+      commons: true,
     },
     preset: {
       // postcss-preset-env 設定を変更します
       autoprefixer: {
         grid: true,
-        flexbox: true
-      }
-    }
+        flexbox: true,
+      },
+    },
   },
   server: {
     host: "0.0.0.0",
-    port: 8080
-  }
+    port: 8080,
+  },
 };

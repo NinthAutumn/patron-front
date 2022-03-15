@@ -6,10 +6,10 @@
       </div>
       <input
         type="text"
-        placeholder="クリエーターを検索"
+        :placeholder="$t('form.search_placeholder')"
       />
     </div>
-    <button-card size="big">検索</button-card>
+    <button-card size="big">{{$t('basic.search')}}</button-card>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {};
     display: flex;
     background: #f0f0f0;
     border-radius: 10rem;
-    color: $primary;
+    color: var(--primary);
     margin-right: 2rem;
     flex-grow: 1;
   }
@@ -40,7 +40,7 @@ export default {};
     font-size: 1.6rem;
   }
   &__input input::placeholder {
-    color: $primary;
+    color: var(--primary);
     opacity: 0.8;
   }
   &__input input {
@@ -48,7 +48,7 @@ export default {};
     background: none;
     border: none;
     font-size: 1.8rem;
-    color: $primary;
+    color: var(--primary);
     padding: 0 2rem;
     font-weight: bold;
   }

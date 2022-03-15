@@ -126,7 +126,7 @@
     }
   }
   h2 {
-    color: $primary;
+    color: var(--primary);
     margin-bottom: 1rem;
     // word-break: break-all;
   }

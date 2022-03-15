@@ -6,7 +6,10 @@
       shadow ? 'button--shadow' : ''
     }`"
   >
-    <div class="button__icon" v-if="icon">
+    <div
+      class="button__icon"
+      v-if="icon"
+    >
       <fa :icon="icon"></fa>
     </div>
     <slot></slot>
@@ -22,7 +25,7 @@ export default {
     },
     type: {
       type: String,
-      default: "very_round",
+      default: "very-round",
     },
     icon: Object,
     size: {

@@ -21,25 +21,24 @@
 
 <script>
 export default {
-  data: () => ({
-    steps: [
-      {
-        title: "アカウントを作る",
-        desc:
-          "アカウントは簡単にいつでも無料で作ることができ、５分程で作ることができます。",
-      },
-      {
-        title: "決済サービスアカウントを繋げる",
-        desc:
-          "アカウント作成後、決済サービスを選択し自分のアカウントを繋げます。現在オンジンでサポートされている決済サービスは<strong class='color color--success'>ペイパル</strong>と<strong class='color color--success'>ストライプ</strong>です。",
-      },
-      {
-        title: "ページリンクをシェアして完了",
-        desc:
-          "アカウント作成時に選んだページアドレスを自分のファン・視聴者・サポーターにシェアする。",
-      },
-    ],
-  }),
+  data() {
+    return {
+      steps: [
+        {
+          title: this.$t("home.create_account"),
+          desc: this.$t("home.create_account_desc"),
+        },
+        {
+          title: this.$t("home.connect_service"),
+          desc: this.$t("home.connect_service_desc"),
+        },
+        {
+          title: this.$t("home.link_page"),
+          desc: this.$t("home.link_page_desc"),
+        },
+      ],
+    };
+  },
 };
 </script>
 

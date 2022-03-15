@@ -32,7 +32,7 @@ export default {
     }
     &--primary {
       @include themify($themes) {
-        background-color: themed("backgroundColor");
+        background-color: var(--background-color);
       }
     }
   }

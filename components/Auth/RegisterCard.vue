@@ -1,33 +1,36 @@
 <template>
   <div class="login-card">
     <card-style class="login-card__form">
-      <form v-if="email" @submit.prevent="submitHandler">
-        <h1 class="login-card__title">アカウントを作る</h1>
-        <label for="email">Eメール</label>
+      <form
+        v-if="email"
+        @submit.prevent="submitHandler"
+      >
+        <h1 class="login-card__title">{{$t('basic.create_account')}}</h1>
+        <label for="email">{{$t('form.email')}}</label>
         <input
           type="email"
           class="input input--normal input--white"
-          placeholder="Eメール"
+          :placeholder="$t('form.email')"
           aria-autocomplete="email"
           required
           name="email"
           autocomplete="email"
           v-model="form.email"
         />
-        <label for="username">ユーザー名</label>
+        <label for="username">{{$t('form.username')}}</label>
         <input
           type="text"
           minlength="2"
           maxlength="30"
           name="username"
           class="input input--normal input--white"
-          placeholder="ユーザー名"
+          :placeholder="$t('form.username')"
           aria-autocomplete="username"
           required
           autocomplete="username"
           v-model="form.username"
         />
-        <label for="password">パスワード</label>
+        <label for="password">{{$t('form.password')}}</label>
         <input
           class="input input--normal input--white"
           type="password"
@@ -35,11 +38,11 @@
           maxlength="255"
           name="password"
           aria-autocomplete="current-password"
-          placeholder="パスワード"
+          :placeholder="$t('form.password')"
           required
           v-model="form.password"
         />
-        <label for>パスワードを確認</label>
+        <label for>{{$t('form.password_confirmation')}}</label>
         <input
           class="input input--normal input--white"
           type="password"
@@ -47,7 +50,7 @@
           minlength="6"
           maxlength="255"
           aria-autocomplete="current-password"
-          placeholder="パスワードをもう一度"
+          :placeholder="$t('form.password_confirmation_placeholder')"
           v-model="form.password_confirmation"
         />
 
@@ -55,14 +58,16 @@
         <div class="flex-divider">
           <button
             type="submit"
-            class="button button--primary button--very_round button--normal"
+            class="button button--primary button--very-round button--normal"
             style="margin-left: auto"
-          >
-            アカウントを作成
-          </button>
+          >{{$t('basic.register')}}</button>
         </div>
       </form>
-      <social-login @email="emailToggle" v-else register></social-login>
+      <social-login
+        @email="emailToggle"
+        v-else
+        register
+      ></social-login>
     </card-style>
   </div>
 </template>
@@ -88,6 +93,13 @@ export default {
     },
     async submitHandler() {
       try {
+        const available = await this.$store.dispatch(
+          "user/isEmailAvailable",
+          this.form.email
+        );
+        console.log(available);
+        if (!available)
+          return this.$toast.error("メールアドレがもう使用されています。");
         if (this.form.password != this.form.password_confirmation)
           return this.$toast.error(
             "パスワードとパスワードの確認が異なっています"
@@ -97,11 +109,11 @@ export default {
           this.form
         );
         if (error) return this.$toast.error(error);
-        this.$toast.success("アカウント作成に成功しました");
+        this.$toast.success(this.$t("notification.register_success"));
         this.$router.push(`/user/onboarding`);
       } catch (error) {
         console.log(error);
-        return this.$toast.error("サーバーで問題がありました");
+        return this.$toast.error(this.$t("notification.internal_error"));
       }
     },
   },
@@ -121,7 +133,7 @@ export default {
     text-align: center;
     font-size: 1.4rem;
     @include themify($themes) {
-      color: themed("linkTextColor");
+      color: var(---link-text-color);
     }
     font-weight: bold;
   }

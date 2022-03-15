@@ -3,19 +3,13 @@
     <div class="desktop-home__container desktop-home__container--secondary">
       <div class="desktop-home__card page-container desktop-home__card--main">
         <div class="desktop-home__content">
-          <h1 class="color--success">自分の情熱・趣味に資金を供給しよう！</h1>
-          <h3>
-            熱狂的ファンたちに月額・年額・投げ銭であなたの活動を新たな方法でサポートを貰おう！
-            投げ銭で資金・支援集めにおいて当社のサービス料金は
-            <strong
-              class="color color--error"
-            >ずっと0%</strong> そして、いつでも無料で引出し可能。サブスクリプションは業界最安サービス料金3%から利用が可能です。
-          </h3>
+          <h1 class="color--success">{{$t('home.header')}}</h1>
+          <h3 v-html="$t('home.slogan_long')"></h3>
           <div class="desktop-home__claim">
             <claim-url
               button-size="big"
               size="large"
-              button-placeholder="始める"
+              :button-placeholder="$t('basic.start')"
               @selected="claimHandler"
             ></claim-url>
           </div>
@@ -39,13 +33,13 @@
     </div>
     <div class="desktop-home__container">
       <div class="desktop-home__card page-container">
-        <h2>好きなクリエーターを見つける</h2>
+        <h2>{{$t('home.find_creator')}}</h2>
         <search-card></search-card>
       </div>
     </div>
     <div class="desktop-home__container">
       <div class="desktop-home__card page-container">
-        <h2>オンジンのはじめ方</h2>
+        <h2>{{$t('home.how_to_start')}}</h2>
         <div
           class="flex-divider"
           style="display:flex;"
@@ -63,11 +57,11 @@
         class="desktop-home__card"
         style="margin:2rem 0;"
       >
-        <h2>オンジンを始める</h2>
+        <h2>{{$t('home.get_started')}}</h2>
         <claim-url
           button-size="big"
           size="large"
-          button-placeholder="始める"
+          :button-placeholder="$t('basic.start')"
           @selected="claimHandler"
         ></claim-url>
       </div>
@@ -97,7 +91,7 @@ export default {
     display: flex;
     justify-content: center;
     &--secondary {
-      background: $secondary;
+      background: var(--secondary);
       margin-top: -10px;
       height: 35rem;
     }
@@ -138,7 +132,7 @@ export default {
   }
   h1 {
     @include themify($themes) {
-      color: themed("successTextColor");
+      color: var(--success-text-color);
     }
     margin: 2rem 0;
     font-size: 3rem;

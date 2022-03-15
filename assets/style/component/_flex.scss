@@ -1,0 +1,26 @@
+.flex{
+    display: flex;
+    &--right{
+        justify-content:flex-end;
+    }
+    &--col{
+        flex-direction: column;
+    }
+    &--center{
+        justify-content: center;
+    }
+    &--between{
+        justify-content: space-between;
+    }
+    &--align{
+        align-items:center;
+    }
+    &__right{
+        align-self:flex-end;
+    }
+    &--row{
+        &--reverse{
+            flex-direction: row-reverse;
+        }
+    }
+}

@@ -21,7 +21,9 @@
   font-weight: 500;
 
 }
-
+*{
+  box-sizing: border-box;
+}
 :root {
   --desktop-width:1100px;
   --desktop-padding:0 2rem;
@@ -29,18 +31,18 @@
 .page-container{
   margin:0 auto;
   @media screen and (min-width:501px) {
-      width:2000px;
+      width:100%;
       max-width:var(--desktop-width);
   }
 }
 @media screen and (min-width:700px) {
   :root {
-    font-size: 10px;
+    font-size: 11px;
   }
 }
 @media screen and (max-width: 1038px) {
   :root {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 
@@ -54,15 +56,13 @@
 }
 
 .nuxt-link-exact-active {
-  color: $primary;
+  color: var(--primary);
 }
 
 
 
 body {
-  @include themify($themes) {
-    background: themed("backgroundColor");
-  }
+  background: var(--background-color);
 
   @media screen and (min-width:500px) {
     padding-top: 4.5rem;
@@ -111,7 +111,7 @@ span {
 
 a {
   @include themify($themes) {
-    color: themed("emphasizedTextColor");
+    color: var(---emphasized-text-color);
   }
 }
 .color{
@@ -119,7 +119,7 @@ a {
     color:$error;
   }
   &--primary{
-    color:$primary;
+    color:var(--primary);
   }
   &--stripe{
     color:$secondary;

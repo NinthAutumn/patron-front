@@ -1,40 +1,40 @@
 export const state = () => ({
-  project: {}
-})
+  project: {},
+});
 
 export const getters = {
-  getProject: state => state.project
-}
+  getProject: (state) => state.project,
+};
 
 export const mutations = {
-  setProject: (state, project) => state.project = project
-}
+  setProject: (state, project) => (state.project = project),
+};
 export const actions = {
-  async fetchProject({
-    commit,
-    state
-  }, url) {
+  async fetchProject({ commit, state }, url) {
     try {
       if (url === state.project.page_url) return;
-      const res = await this.$http.$get(`/v1/projects/${url}`);
-      commit('setProject', res.project);
+      const project = await this.$http.$get(`/v1/projects/${url}`);
+      commit("setProject", project);
       return {
-        error: false
-      }
+        error: false,
+      };
     } catch (error) {
       return {
-        error: error.response.data.error
-      }
+        error: error.response.data.error,
+      };
     }
   },
   async isPageUrlAvailable({}, url) {
     try {
       const res = await this.$http.$get(`/v1/projects/${url}/isAvailable`);
-
+      if (res.error) {
+        this.$toast.error(res.error);
+        return false;
+      }
       return res.available;
     } catch (error) {
       this.$toast.error(error.response.data.error);
       return false;
     }
-  }
-}
+  },
+};

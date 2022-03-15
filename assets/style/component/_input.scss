@@ -3,7 +3,7 @@ input[type="date"] {
   // display: block;
 
   // @include themify($themes) {
-  //   box-shadow: themed("verySmallBoxShadow");
+  //   box-shadow: var(--very-small-box-shadow);
   // }
 
   // height: 4rem;
@@ -24,6 +24,13 @@ input[type="date"] {
   box-sizing: border-box;
   margin-bottom: 1rem;
   margin-top: 0.5rem;
+  &__dollar{
+    height:100%;
+    width:2.5rem;
+    display:grid;
+    place-content: center;
+    font-size:1.5rem;
+  }
 
   &:active,
   &:focus {
@@ -52,7 +59,7 @@ input[type="date"] {
   &--white {
     @include themify($themes) {
       background-color: themed("containerBackgroundColor");
-      box-shadow: themed("verySmallBoxShadow");
+      box-shadow: var(--very-small-box-shadow);
       // box-shadow: themed('smallBoxShadow');
     }
   }
@@ -61,7 +68,7 @@ input[type="date"] {
     border: 1px solid rgb(247, 247, 247);
 
     @include themify($themes) {
-      background-color: themed("backgroundColor");
+      background-color: var(--background-color);
     }
   }
 }

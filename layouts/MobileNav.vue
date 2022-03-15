@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body-theme">
     <mobile-nav></mobile-nav>
     <nuxt />
   </div>

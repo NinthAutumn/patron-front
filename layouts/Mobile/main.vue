@@ -1,11 +1,24 @@
 <template>
   <div class="nav__menu">
-    <div class="nav__item" v-for="item of list" :key="item.name">
-      <nuxt-link tag="div" :to="item.link" v-if="item.icon" class="nav__icon">
+    <div
+      class="nav__item"
+      v-for="item of list"
+      :key="item.name"
+    >
+      <nuxt-link
+        tag="div"
+        :to="item.link"
+        v-if="item.icon"
+        class="nav__icon"
+      >
         <fa :icon="item.icon"></fa>
-        <span>{{ item.name }}</span>
+        <!-- <span>{{ item.name }}</span> -->
       </nuxt-link>
-      <div class="nav__profile" @click="$router.push('/auth/login')" v-else>
+      <div
+        class="nav__profile"
+        @click="auth?$router.push('/user'):$router.push('/auth/login')"
+        v-else
+      >
         <img
           height="50"
           width="50"
@@ -14,7 +27,7 @@
           class="nav__avatar"
           alt
         />
-        <div class="nav__username" v-if="auth">{{ user.username }}</div>
+        <!-- <div class="nav__username" v-if="auth">{{ user.username }}</div> -->
       </div>
     </div>
   </div>
@@ -51,7 +64,7 @@ export default {
         { name: "ホーム", icon: "home", link: "/" },
         { name: "投稿", icon: "comments", link: "/posts" },
         { name: "user", icon: "", img: require("~/assets/img/profile.png") },
-        { name: "ページ", icon: "comments", link: "/creator" },
+        { name: "ページ", icon: "user", link: "/creators" },
         { name: "通知", icon: "bell", link: "/notification" },
       ];
     }

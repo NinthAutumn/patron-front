@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-goal">
-    <h3>ゴール</h3>
+    <h3>Goal</h3>
     <div class="sidebar-goal__list">
       <div
         class="sidebar-goal__item"

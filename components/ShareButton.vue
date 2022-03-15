@@ -104,7 +104,7 @@ export default {
       // box-shadow: themed("boxShadow");
       // color:themed('')
       // background-color: $primary-back;
-      // color: themed("linkTextColor");
+      // color: var(---link-text-color);
       background: #eee;
     }
   }

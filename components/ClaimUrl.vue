@@ -8,9 +8,10 @@
       <input
         type="text"
         v-model="url"
-        placeholder="ユーザー名"
+        :placeholder="$t('form.username')"
       />
       <button-card
+        v-if="button"
         @click="clickHandler"
         class="claim-url__button"
         :size="buttonSize"
@@ -21,17 +22,26 @@
 
 <script>
 export default {
+  watch: {
+    url(val) {
+      this.$emit("input", val);
+    },
+  },
   data: () => ({
     url: "",
   }),
   props: {
+    button: {
+      type: Boolean,
+      default: true,
+    },
     size: {
       type: String,
       default: "normal",
     },
     buttonPlaceholder: {
       type: String,
-      default: "選ぶ",
+      default: "Claim",
     },
     buttonSize: {
       type: String,

@@ -1,25 +1,23 @@
 export const state = () => ({
-  creator: {}
-})
+  creator: {},
+});
 
 export const getters = {
-  getCreator: state => state.creator
-}
+  getCreator: (state) => state.creator,
+};
 
 export const mutations = {
-  setCreator: (state, creator) => state.creator = creator,
-}
+  setCreator: (state, creator) => (state.creator = creator),
+};
 export const actions = {
-  async fetchCreator({
-    commit
-  }, id) {
+  async fetchCreator({ commit }) {
     try {
-      const res = this.$http.$get(`/v1/creators/${id}`);
-      commit('setCreator', res);
+      const res = await this.$http.$get(`/v1/creators/show`);
+      commit("setCreator", res);
     } catch (error) {
       return {
-        error
-      }
+        error,
+      };
     }
-  }
-}
+  },
+};

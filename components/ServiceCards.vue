@@ -19,28 +19,30 @@
 
 <script>
 export default {
-  data: () => ({
-    cards: [
-      {
-        title: "投げ銭",
-        img: require("~/assets/svg/tip-big.svg"),
-        class: "tip",
-        link: "/pricing#tip",
-      },
-      {
-        title: "サブスク",
-        img: require("~/assets/svg/sub-big.svg"),
-        class: "sub",
-        link: "/pricing#sub",
-      },
-      {
-        title: "ショップ",
-        img: require("~/assets/svg/shop-big.svg"),
-        class: "sub",
-        link: "/pricing#shop",
-      },
-    ],
-  }),
+  data() {
+    return {
+      cards: [
+        {
+          title: this.$t("basic.donation"),
+          img: require("~/assets/svg/tip-big.svg"),
+          class: "tip",
+          link: "/pricing#tip",
+        },
+        {
+          title: this.$t("basic.subscription"),
+          img: require("~/assets/svg/sub-big.svg"),
+          class: "sub",
+          link: "/pricing#sub",
+        },
+        {
+          title: this.$t("basic.store"),
+          img: require("~/assets/svg/shop-big.svg"),
+          class: "sub",
+          link: "/pricing#shop",
+        },
+      ],
+    };
+  },
 };
 </script>
 
@@ -73,7 +75,7 @@ export default {
     }
     @include themify($themes) {
       background: themed("containerBackgroundColor");
-      //   box-shadow: themed("verySmallBoxShadow");
+      //   box-shadow: var(--very-small-box-shadow);
     }
     cursor: pointer;
     padding: 1rem;

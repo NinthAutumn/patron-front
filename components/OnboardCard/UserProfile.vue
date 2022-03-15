@@ -1,15 +1,29 @@
 <template>
   <div class="user-profile">
-    <h1>プロファイル設定</h1>
+    <h1>{{$t('onboarding.profile_setting')}}</h1>
     <div class="user-profile__card">
-      <upload-avatar v-model="form.file"></upload-avatar>
-      <label for="about">自分について</label>
+      <upload-avatar v-model="form.avatar"></upload-avatar>
+      <label for="about">{{$t('form.about_me')}}</label>
       <textarea
         v-model="form.bio"
-        placeholder="自分についてなんでも。。。"
+        :placeholder="$t('form.about_me_placeholder')"
         class="input input--textarea input--white"
       ></textarea>
-      <label for="">性別</label>
+      <label for>{{$t('form.first_name')}}</label>
+      <input
+        type="text"
+        v-model="form.first_name"
+        :placeholder="$t('form.first_name_placeholder')"
+        class="input input--normal input--white"
+      />
+      <label for>{{$t('form.last_name')}}</label>
+      <input
+        v-model="form.last_name"
+        type="text"
+        :placeholder="$t('form.last_name_placeholder')"
+        class="input input--normal input--white"
+      />
+      <label for>{{$t('form.gender')}}</label>
       <div class="user-profile__gender">
         <input
           type="radio"
@@ -18,7 +32,7 @@
           id="male"
           value="male"
         />
-        <label for="male">男性</label>
+        <label for="male">{{$t('form.male')}}</label>
         <input
           type="radio"
           name="gender"
@@ -26,7 +40,7 @@
           id="female"
           value="female"
         />
-        <label for="female">女性</label>
+        <label for="female">{{$t('form.female')}}</label>
         <input
           type="radio"
           name="gender"
@@ -34,14 +48,18 @@
           id="other"
           value="other"
         />
-        <label for="other">その他</label>
+        <label for="other">{{$t('form.others')}}</label>
       </div>
     </div>
-    <button-card style="margin-left: auto; margin-top: 1rem"
-      >設定をセーブする</button-card
+    <button-card
+      @click="submitHandler"
+      style="margin-left: auto; margin-top: 1rem"
+    >{{$t('onboarding.save_setting')}}</button-card>
+    <div
+      class="info"
+      @click="skipHandler"
     >
-    <div class="info">
-      このステップをスキップする
+      {{$t('onboarding.skip')}}
       <div class="info__icon">
         <fa icon="caret-right"></fa>
       </div>
@@ -55,11 +73,41 @@ export default {
   components: {
     UploadAvatar,
   },
+  methods: {
+    async uploadFile() {
+      let fd = new FormData();
+      fd.append("file", this.form.avatar);
+      const { image_url } = await this.$http.$post("/v1/files", fd);
+      return image_url;
+    },
+    async submitHandler() {
+      let avatar = null;
+      if (this.form.avatar) {
+        avatar = await this.uploadFile();
+      }
+      console.log(avatar);
+      await Promise.all([
+        this.$http.$patch(`/v1/users/profile`, {
+          ...this.form,
+          avatar,
+        }),
+        this.$http.$patch(`/v1/users/onboarding/finish`),
+      ]);
+      this.$router.push("/user");
+    },
+    async skipHandler() {
+      await this.$http.$patch(`/v1/users/onboarding/finish`);
+      this.$router.push("/user");
+    },
+  },
   data: () => ({
     form: {
       gender: "other",
       bio: "",
-      file: "",
+      avatar: "",
+      first_name: "",
+      phone_Number: "",
+      last_name: "",
     },
   }),
 };
@@ -72,6 +120,8 @@ export default {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
+  cursor: pointer;
+  user-select: none;
   &__icon {
     margin-left: 1rem;
   }

@@ -4,7 +4,7 @@
       <img
         height="150"
         width="100%"
-        :src="project.banner"
+        :src="project.banner||'https://via.placeholder.com/1200x500'"
         alt
       />
     </div>
@@ -13,7 +13,7 @@
         <div class="project-header__avatar-block">
           <img
             class="project-header__avatar avatar avatar--normal"
-            :src="project.avatar"
+            :src="project.creator.avatar||require('~/assets/img/default_profile.svg')"
             alt
             width="100"
             height="100"
@@ -41,7 +41,10 @@ export default {
 <style lang="scss">
 .project-header {
   position: relative;
+  max-width: 100%;
+
   &__banner {
+    max-width: 100%;
   }
   &__card {
     width: 100%;
@@ -71,7 +74,7 @@ export default {
   }
   &__name {
     @include themify($themes) {
-      color: themed("linkTextColor");
+      color: var(---link-text-color);
     }
     margin-bottom: 1rem;
   }

@@ -1,22 +1,13 @@
 <template>
   <div class="project-page">
     <div class="page-container">
-      <project-header
-        :project="project"
-        v-if="$device.isMobile"
-      ></project-header>
-      <desktop-header
-        :project="project"
-        v-else
-      ></desktop-header>
-      <nuxt-child :project="project"></nuxt-child>
+      <project-page :project="project"></project-page>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import ProjectHeader from "@/components/ProjectHeader";
 // import DesktopHeader from "@/components/Page/Project/Header";
 export default {
   computed: {
@@ -27,15 +18,10 @@ export default {
   layout(ctx) {
     return ctx.isMobile ? "Mobile/project" : "DesktopNav";
   },
-  components: {
-    ProjectHeader,
-    DesktopHeader: () => import("@/components/Page/Project/Header"),
-  },
-  async fetch() {
-    await this.$store.dispatch(
-      "project/fetchProject",
-      this.$route.params.project
-    );
+  components: {},
+  async asyncData({ store, route, redirect }) {
+    // if (route.params.project === "user") redirect("/");
+    await store.dispatch("project/fetchProject", route.params.project);
   },
 };
 </script>

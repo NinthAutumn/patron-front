@@ -3,14 +3,14 @@
     <div
       class="mobile-home__container mobile-home__container--secondary container-padding"
     >
-      <h1 class="color--success">自分の情熱・趣味に資金を供給しよう！</h1>
-      <h3>熱中的ファンたちに月・年額・投げ銭であなたの活動を新たな方法でサポートを貰おう！</h3>
+      <h1 class="color--success">{{$t('home.header')}}</h1>
+      <h3>{{$t('home.slogan')}}</h3>
       <button-card
         size="normal"
         id="main-button"
         @click="$router.push('/auth/login')"
       >
-        始める
+        {{$t('basic.start')}}
         <img
           height="14"
           width="22"
@@ -42,13 +42,13 @@
     <div
       class="mobile-home__container mobile-home__container--large container-padding"
     >
-      <h2 style="margin-bottom:2rem;">オンジンのはじめ方</h2>
+      <h2 style="margin-bottom:2rem;">{{$t('home.how_to_start')}}</h2>
       <step-list></step-list>
     </div>
     <div
       class="mobile-home__container mobile-home__container--large container-padding"
     >
-      <h2 style="margin-bottom:2rem;">オンジンを始める</h2>
+      <h2 style="margin-bottom:2rem;">{{$t('home.get_started')}}</h2>
       <claim-url></claim-url>
     </div>
   </div>
@@ -107,7 +107,7 @@ export default {
   }
   h1 {
     @include themify($themes) {
-      color: themed("successTextColor");
+      color: var(--success-text-color);
     }
     margin-bottom: 0;
     // color: ;

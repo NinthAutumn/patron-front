@@ -1,10 +1,10 @@
 <template>
   <div class="project-main container-padding">
-    <card-style style="margin-bottom: 2rem">
+    <!-- <card-style style="margin-bottom: 2rem">
       <goal-card style="margin-bottom: 1rem"></goal-card>
       <div class="support-card">
         <div style="display: flex">
-          <button-card color="secondary">サポートする</button-card>
+          <button-card color="secondary">Support</button-card>
           <share-button></share-button>
         </div>
       </div>
@@ -12,10 +12,10 @@
 
     <card-style>
       <div class="project-main__about">
-        <h2>情報</h2>
+        <h2>Description</h2>
         <p>{{ project.description }}</p>
       </div>
-    </card-style>
+    </card-style>-->
 
     <card-style>
       <h2></h2>

@@ -8,7 +8,7 @@
       <span class="search-component__icon">
         <fa icon="search"></fa>
       </span>
-      <p>クリエーターを検索</p>
+      <p>{{$t('form.search_placeholder')}}</p>
     </nuxt-link>
   </div>
 </template>
@@ -24,7 +24,7 @@
     font-size: 1.6rem;
     @include themify($themes) {
       background: rgb(243, 243, 243);
-      color: themed('linkTextColor');
+      color: themed("linkTextColor");
     }
     padding: 1rem 2rem;
     border-radius: 100px;
@@ -38,7 +38,7 @@
   }
   &__icon {
     @include themify($themes) {
-      color: themed('linkTextColor');
+      color: themed("linkTextColor");
     }
     font-size: inherit;
   }

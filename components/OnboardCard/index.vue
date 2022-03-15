@@ -1,7 +1,18 @@
 <template>
   <div class="onboarding">
+    <div
+      class="button button--back"
+      style="margin-bottom:2rem;"
+      v-if="step != 'is-creator'"
+      @click="backHandler"
+    >
+      <fa icon="arrow-left"></fa>
+    </div>
     <card-style>
-      <is-creator @step="setStep" v-if="step === 'is-creator'"></is-creator>
+      <is-creator
+        @step="setStep"
+        v-if="step === 'is-creator'"
+      ></is-creator>
       <payout-method
         @step="setStep"
         v-else-if="step === 'payout-method'"
@@ -37,11 +48,16 @@ export default {
     setStep(step) {
       this.step = step;
     },
+    backHandler() {
+      if (this.step == "project-setting" || this.step == "user-profile") {
+        this.step = "is-creator";
+      }
+    },
     endHandler(user) {
       if (user) {
         this.$router.push(`/home`);
       } else {
-        this.$router.push(`/creator/${this.project.url}`);
+        this.$router.push(`/creators/${this.project.url}`);
       }
     },
   },

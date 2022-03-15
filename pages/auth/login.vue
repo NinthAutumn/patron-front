@@ -1,13 +1,17 @@
 <template>
-  <section id="login-page" class="container-padding">
-    <login-card></login-card>
+  <section
+    id="login-page"
+    class="container-padding"
+  >
+    <auth-login-card></auth-login-card>
   </section>
 </template>
 
 <script >
 export default {
-  components: {
-    LoginCard: () => import("@/components/LoginCard.vue"),
+  components: {},
+  async mounted() {
+    this.$social.load();
   },
 };
 </script>
