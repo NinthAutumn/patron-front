@@ -75,6 +75,7 @@
       style="margin-top:2rem;"
     >
       <div
+        @click="submitHandler"
         class="button button--normal button--primary button--very-round"
       >Create Project</div>
     </div>
@@ -118,14 +119,14 @@ export default {
     onFileChange(e) {
       const file = e.target.files || e.dataTransfer.files;
       // return console.log(this.files);
-      this.form.banner = this.file[0];
+      this.form.banner = file[0];
       this.banner_img = window.URL.createObjectURL(this.form.banner);
     },
     async submitHandler() {
       this.error = "";
       let avatar = null,
         banner = null;
-      if (!(await selectedHandler(this.form.page_url))) {
+      if (!(await this.selectedHandler(this.form.page_url))) {
         return (this.error = "URL is already taken");
       }
       if (this.form.banner) {

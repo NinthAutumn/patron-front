@@ -1,6 +1,12 @@
 <template>
   <div class="project-header">
     <div class="project-header__banner">
+      <div
+        class="project-header__edit"
+        v-if="user.id&&user.creator.id== project.creator_id"
+      >
+        <p>Change Banner</p>
+      </div>
       <img
         height="150"
         width="100%"
@@ -45,6 +51,15 @@ export default {
 
   &__banner {
     max-width: 100%;
+    position: relative;
+  }
+  &__edit {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background: grey;
   }
   &__card {
     width: 100%;

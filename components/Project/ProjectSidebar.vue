@@ -2,7 +2,7 @@
   <div class="project-sidebar">
     <div class="project-sidebar__content">
       <img
-        :src="project.creator.avatar||require('~/assets/img/default_profile.svg')"
+        :src="(project.creator&&project.creator.avatar)||require('~/assets/img/default_profile.svg')"
         alt
         height="100"
         width="100"
@@ -16,15 +16,15 @@
       </h1>
       <div class="project-sidebar__stats">
         <div class="project-sidebar__stat">
-          <div class="project-sidebar__value">10000</div>
-          <div class="project-sidebar__label">Followers</div>
+          <div class="project-sidebar__value">{{stats.total_earned}}</div>
+          <div class="project-sidebar__label">Total Earned</div>
         </div>
         <div class="project-sidebar__stat">
-          <div class="project-sidebar__value">10000</div>
+          <div class="project-sidebar__value">{{stats.total_members}}</div>
           <div class="project-sidebar__label">Members</div>
         </div>
         <div class="project-sidebar__stat">
-          <div class="project-sidebar__value">10000</div>
+          <div class="project-sidebar__value">{{stats.total_donations}}</div>
           <div class="project-sidebar__label">Tips</div>
         </div>
       </div>
@@ -39,6 +39,19 @@
 export default {
   props: {
     project: Object,
+  },
+  data: () => ({
+    stats: {
+      total_earned: 0,
+      total_members: 0,
+      total_donations: 0,
+    },
+  }),
+  async created() {
+    const stats = await this.$http.$get(
+      `/v1/projects/${this.project.id}/stats`
+    );
+    this.stats = stats;
   },
   components: {
     GoalCard: () => import("@/components/Goal/SideBar"),
@@ -55,6 +68,7 @@ export default {
   box-sizing: border-box;
   border-radius: 1rem;
   max-width: 100%;
+  max-height: 50rem;
 
   justify-content: space-between;
   background: var(--container-background-color);

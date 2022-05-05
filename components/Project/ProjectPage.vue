@@ -2,9 +2,26 @@
   <div class="dp-header">
     <div class="dp-header__banner">
       <div
+        @mouseenter="edit=true"
+        @mouseleave="edit=false"
         class="dp-header__image"
-        :style="{backgroundImage:`url(${project.banner||'https://via.placeholder.com/1200x500'})`}"
-      ></div>
+        :style="{backgroundImage:`url(${banner_img||project.banner||'https://via.placeholder.com/1200x500'})`}"
+      >
+        <label
+          class="dp-header__edit"
+          for="change-banner"
+          v-if="edit&&user.id&&user.creator.id== project.creator_id"
+        >
+          <input
+            type="file"
+            name="change-banner"
+            accept="image/*"
+            @change="onFileChange"
+            id="change-banner"
+          />
+          <p>Change Banner</p>
+        </label>
+      </div>
     </div>
     <div
       class="dp-header__content"
@@ -15,6 +32,7 @@
         :project="project"
       ></project-sidebar>
       <project-desc
+        @support="support=true"
         class="dp-header__desc"
         :project="project"
       ></project-desc>
@@ -22,17 +40,45 @@
       <div class="dp-header__child">
         <project-navs class="dp-header__nav"></project-navs>
 
-        <nuxt-child :project="project"></nuxt-child>
+        <nuxt-child
+          @support="support=true"
+          :project="project"
+        ></nuxt-child>
       </div>
     </div>
+    <lazy-project-support-modal
+      :project="project"
+      @close="support=false"
+      v-if="support"
+    ></lazy-project-support-modal>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     project: Object,
   },
+  computed: {
+    ...mapGetters({
+      user: "auth/getAuth",
+    }),
+  },
+  methods: {
+    onFileChange(e) {
+      const file = e.target.files || e.dataTransfer.files;
+      // return console.log(this.files);
+      this.file = file[0];
+      this.banner_img = window.URL.createObjectURL(this.file);
+    },
+  },
+  data: () => ({
+    support: false,
+    edit: false,
+    banner_img: null,
+    file: null,
+  }),
   components: {},
 };
 </script>
@@ -42,9 +88,13 @@ export default {
   max-width: var(--desktop-width);
   &__banner {
     max-width: 100%;
-
+    // width: 100vw;
     // position: relative;
     height: 200px;
+    input[type="file"] {
+      width: 100%;
+      height: 100%;
+    }
   }
   &__banner .banner {
     // width: 100%;
@@ -52,6 +102,22 @@ export default {
     height: 200px;
   }
   img {
+  }
+  &__edit {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    place-content: center;
+    display: grid;
+    background: rgb(0, 0, 0);
+    z-index: 10;
+    p {
+      font-size: 2rem !important;
+
+      color: white;
+    }
   }
   &__child {
     grid-area: child;
@@ -69,17 +135,15 @@ export default {
     box-sizing: border-box;
     z-index: 1;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 0.5fr;
+    grid-template-rows: 1fr 0.5fr 1fr;
     gap: 1rem;
-    grid-template-areas: "side main main" "side child child" "side child child";
+    grid-template-areas: "side main main" "side child child" "side child child" ". child child";
     @media screen and (max-width: 750px) {
       grid-template-columns: 1fr !important;
       grid-template-rows: 1fr !important;
       grid-template-areas: "side" "main" "child" !important;
     }
-    @media screen and(min-width:751px) {
-      transform: translateY(-50px);
-    }
+
     &--shop {
       grid-template-areas: "side main main" "child child child" "child child child";
     }
@@ -91,16 +155,26 @@ export default {
   }
   &__side {
     grid-area: side;
+    @media screen and(min-width:751px) {
+      transform: translateY(-50px);
+    }
     z-index: 1;
   }
   &__desc {
     grid-area: main;
+    @media screen and(min-width:751px) {
+      transform: translateY(-50px);
+    }
   }
   &__image {
     width: 100%;
     position: absolute;
     left: 0;
-    top: 40px;
+    top: 0;
+
+    @media screen and (min-width: 751px) {
+      top: 40px;
+    }
     background: white;
     display: flex;
     height: 30rem;

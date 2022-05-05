@@ -47,8 +47,13 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: [],
+  buildModules: ["@nuxtjs/date-fns"],
 
+  dateFns: {
+    locales: ["es", "ru", "ja"],
+    defaultLocale: "en-US",
+    format: "yyyy-MM-dd",
+  },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     "@nuxtjs/i18n",
@@ -56,6 +61,10 @@ export default {
       "@nuxt/http",
       {
         proxy: true,
+        retry: {
+          statusCodes: [401],
+          limit: 2,
+        },
       },
     ],
     "@nuxtjs/style-resources",
@@ -94,6 +103,7 @@ export default {
               "faEnvelope",
               "faList",
               "faCog",
+              "faFile",
               "faListUl",
               "faComments",
               "faLock",
@@ -149,6 +159,7 @@ export default {
               "faSlidersH",
               "faThList",
               "faStream",
+              "faHeart",
               "faGifts",
               "faShoppingCart",
               "faInfoCircle",

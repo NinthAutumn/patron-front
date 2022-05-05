@@ -17,14 +17,58 @@
           <p></p>
         </div>
       </div>
-      <h3>Payment Methods</h3>
+      <h3>Fiat Payment Methods</h3>
       <div class="creator-profile__methods">
-        <button-card
-          v-if="!creator.stripe_account_id"
-          color="secondary"
-          @click="stripeHandler"
-          :icon="{ prefix: 'fab', iconName: 'cc-stripe' }"
-        >Connect To Stripe</button-card>
+        <div class="creator-profile__method">
+          <button-card
+            v-if="!creator.payout_methods.find(item=>item.type=='stripe')"
+            color="secondary"
+            @click="stripeHandler"
+            :icon="{ prefix: 'fab', iconName: 'cc-stripe' }"
+          >Connect To Stripe</button-card>
+          <button-card
+            v-else
+            color="secondary"
+            @click="gotoDashboard"
+            :icon="{ prefix: 'fab', iconName: 'cc-stripe' }"
+          >Stripe Dashboard</button-card>
+        </div>
+      </div>
+      <h3>Crypto Payment Methods</h3>
+
+      <div class="creator-profile__cryptos">
+        <div
+          class="creator-profile__crypto"
+          v-for="crypto of cryptos"
+          :key="crypto.id"
+        >
+          <div class="creator-profile__qr">
+            <utility-qr-card :dataText="crypto.external_id"></utility-qr-card>
+          </div>
+          <div
+            class="creator-profile__crypto-name"
+          >{{crypto.meta.name}}({{crypto.meta.network}})</div>
+          <div class="creator-profile__crypto-address">{{crypto.external_id}}</div>
+          <div class="flex flex--align flex--center">
+            <div
+              class="button button--close"
+              @click="removeMethodHandler(crypto.id)"
+            >
+              <fa icon="minus"></fa>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex--align">
+        <div
+          class="button button--primary button--normal button--very-round"
+          @click="crypto_form=true"
+        >
+          <fa
+            icon="plus"
+            style="margin-right:2rem;"
+          ></fa>Add Crypto Method
+        </div>
       </div>
 
       <h3>Projects</h3>
@@ -45,6 +89,28 @@
             style="margin-right:2rem;"
           ></fa>New Project
         </div>
+      </div>
+    </div>
+    <div
+      class="dialog dialog__container"
+      v-if="crypto_form"
+    >
+      <div
+        class="dialog__close"
+        @click="crypto_form=false"
+      ></div>
+      <div class="dialog__content">
+        <div class="dialog__header flex flex--between flex--align">
+          <h3>Add Crypto Currency</h3>
+          <div
+            class="button button--close"
+            @click="crypto_form=false"
+          >
+            <fa icon="times"></fa>
+          </div>
+        </div>
+
+        <creator-crypto-form @added="refreshCreator"></creator-crypto-form>
       </div>
     </div>
     <div
@@ -83,12 +149,28 @@ export default {
   },
   data: () => ({
     add_project: false,
+    crypto_form: false,
   }),
+  computed: {
+    cryptos() {
+      return this.creator.payout_methods.filter(
+        (item) => item.type == "crypto"
+      );
+    },
+  },
   methods: {
+    refreshCreator() {
+      this.$emit("refresh");
+    },
+    async removeMethodHandler(payout_id) {
+      await this.$http.$delete(`/v1/creators/payout-method/${payout_id}`);
+      this.refreshCreator();
+    },
+    async gotoDashboard() {},
     async stripeHandler() {
       const res = await this.$http.$get(`/v1/creators/stripe/link`);
       // return;
-      // window.location.href = res.url;
+      window.location.href = res.url;
     },
   },
 };
@@ -114,6 +196,27 @@ export default {
       grid-template-columns: repeat(1, 1fr);
     }
     gap: 1rem;
+  }
+  &__crypto {
+    max-width: 25rem;
+    font-size: 1.6rem;
+    padding: 1rem;
+    box-shadow: var(--very-small-box-shadow);
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  &__crypto-address {
+    overflow: hidden;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: --webkit-box;
+  }
+  &__cryptos {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -1rem;
   }
   &__container {
     padding: 2rem;

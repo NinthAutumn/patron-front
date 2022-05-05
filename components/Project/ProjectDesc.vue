@@ -29,13 +29,9 @@
         class="project-desc__support"
         size="big"
         color="secondary"
-        @click="support=true"
+        @click="$emit('support')"
       >Support Project</button-card>
     </div>
-    <project-support-modal
-      @close="support=false"
-      v-if="support"
-    ></project-support-modal>
   </div>
 </template>
 
@@ -86,7 +82,7 @@ export default {
   background: var(--container-background-color);
 
   border-radius: 1rem;
-  height: 30rem;
+  min-height: 30rem;
   .flex-divider {
     display: flex;
   }
@@ -133,8 +129,8 @@ export default {
     font-size: 2.5rem;
     margin-bottom: 0;
   }
-  p {
-    font-size: 1.6rem;
-  }
+  // p {
+  //   font-size: 1.6rem;
+  // }
 }
 </style>

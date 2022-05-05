@@ -146,7 +146,7 @@ export default {
           banner = await this.uploadAvatar(this.form.banner);
         }
         await this.$http.$post("/v1/creators", {
-          avatar: this.form.avatar,
+          avatar: avatar,
           name: this.form.name,
         });
         await this.$http.$post("/v1/projects", {

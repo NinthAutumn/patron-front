@@ -5,6 +5,7 @@
         <creator-profile-card
           :creator="creator"
           :user="user"
+          @refresh="refreshHandler"
         ></creator-profile-card>
       </div>
     </div>
@@ -19,6 +20,11 @@ export default {
       creator: "creator/getCreator",
       user: "auth/getAuth",
     }),
+  },
+  methods: {
+    async refreshHandler() {
+      await this.$store.dispatch("creator/fetchCreator");
+    },
   },
   async asyncData({ store }) {
     await store.dispatch("creator/fetchCreator");

@@ -12,10 +12,11 @@ export const mutations = {
 export const actions = {
   async fetchProject({ commit, state }, url) {
     try {
-      if (url === state.project.page_url) return;
+      if (url === state.project.page_url) return { error: "already_called" };
       const project = await this.$http.$get(`/v1/projects/${url}`);
       commit("setProject", project);
       return {
+        project,
         error: false,
       };
     } catch (error) {

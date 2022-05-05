@@ -1,5 +1,21 @@
 <template>
-  <div class="project-main container-padding">
+  <div
+    class="project-main"
+    style="margin-top:2rem;"
+  >
+    <h3>Feed</h3>
+
+    <div class="flex flex--right project-main__leave">
+      <div
+        @click="$emit('support')"
+        class="button button--primary--light button--normal button--very-round"
+      >
+        <fa
+          icon="edit"
+          style="margin-right:1rem;"
+        ></fa>Leave a Message
+      </div>
+    </div>
     <!-- <card-style style="margin-bottom: 2rem">
       <goal-card style="margin-bottom: 1rem"></goal-card>
       <div class="support-card">
@@ -17,9 +33,7 @@
       </div>
     </card-style>-->
 
-    <card-style>
-      <h2></h2>
-    </card-style>
+    <feed-list :project="project"></feed-list>
   </div>
 </template>
 
@@ -42,6 +56,18 @@ export default {
   @media screen and (min-width: 501px) {
     max-width: var(--desktop-width);
     width: 100%;
+  }
+  &__leave {
+    @media screen and (max-width: 750px) {
+      display: block;
+    }
+  }
+  h3 {
+    @media screen and (min-width: 751px) {
+      display: none;
+    }
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
   }
 }
 </style>

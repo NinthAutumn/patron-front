@@ -1,6 +1,8 @@
 <template>
   <div class="page page-container">
-    <div class="container-padding">{{user}}</div>
+    <div class="container-padding">
+      <user-main-card :user="user"></user-main-card>
+    </div>
   </div>
 </template>
 

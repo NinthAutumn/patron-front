@@ -64,14 +64,14 @@
 body {
   background: var(--background-color);
 
-  @media screen and (min-width:500px) {
+  @media screen and (min-width:751px) {
     padding-top: 4.5rem;
 
   }
 
-  @media screen and (max-width:500px) {
+  @media screen and (max-width:750px) {
     // padding: 0.5rem;
-
+    // padding-top:0!important;
     padding-bottom: 6rem;
 
   }

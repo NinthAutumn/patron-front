@@ -2,15 +2,21 @@ export const state = () => ({
   auth: {
     id: 0,
   },
+  interval: null,
 });
 
 export const getters = {
   isAuth: (state) => state.auth.id > 0,
+
   getAuth: (state) => state.auth,
+  getInterval: (state) => state.interval,
 };
 
 export const mutations = {
   setAuth: (state, auth) => (state.auth = auth),
+  setInterval: (state, interval) => (state.interval = interval),
+
+  CLEAR_INTERVAL: (state) => clearInterval(state.interval),
 };
 export const actions = {
   async register({ commit, dispatch }, form) {
@@ -39,6 +45,9 @@ export const actions = {
         refresh_token: this.$storage.getCookie("refresh_token"),
       });
       await dispatch("setAuth", res);
+      return {
+        ...res,
+      };
     } catch (error) {
       return {
         error: error.message,
@@ -54,6 +63,38 @@ export const actions = {
         error,
       };
     }
+  },
+  async intervalRefresh({ commit, dispatch }) {
+    commit("CLEAR_INTERVAL");
+    let count = 1;
+    let access_token;
+    const interv = setInterval(async () => {
+      if (count === 3) {
+        try {
+          const { error, token } = await dispatch("refreshToken");
+          if (access_token)
+            await this.$http.setToken(token.access_token, "Bearer");
+          if (error) commit("CLEAR_INTERVAL");
+        } catch (error) {
+          await dispatch("logout");
+          commit("CLEAR_INTERVAL");
+        }
+        count = 1;
+      } else {
+        try {
+          let res = await this.$http.$patch("/v1/auth/refreshAccessToken");
+          access_token = res.access_token;
+          await this.$http.setToken(access_token, "Bearer");
+          count++;
+        } catch (error) {
+          console.log(error);
+          await dispatch("logout");
+          commit("CLEAR_INTERVAL");
+        }
+      }
+    }, 1000 * 60 * 3);
+    commit("setInterval", interv);
+    return { access_token };
   },
   async setAuth({ commit }, res) {
     commit("setAuth", res.user);

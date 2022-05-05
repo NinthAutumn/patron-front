@@ -10,9 +10,10 @@ export default (ctx, inject) => {
       load() {
         loader.load();
       },
-      import() {
+      import(id) {
         return Stripe(
-          "pk_test_51JZrXOA9ZPnS13GfFwOP38fQNyXdjN3tHMkIkHOqdzt9xCq8fGb0HjJ5k6K6FQX3CBVzEW6ypudKWetpJJKaOCla00JidOx1T3"
+          "pk_test_51JZrXOA9ZPnS13GfFwOP38fQNyXdjN3tHMkIkHOqdzt9xCq8fGb0HjJ5k6K6FQX3CBVzEW6ypudKWetpJJKaOCla00JidOx1T3",
+          { stripeAccount: id }
         );
       },
     });

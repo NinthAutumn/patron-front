@@ -21,7 +21,12 @@ export default {
   components: {},
   async asyncData({ store, route, redirect }) {
     // if (route.params.project === "user") redirect("/");
-    await store.dispatch("project/fetchProject", route.params.project);
+    const res = await store.dispatch(
+      "project/fetchProject",
+      route.params.project
+    );
+    if (res?.project && store.getters["auth/isAuth"])
+      await store.dispatch("subscription/fetchSubscription", res.project.id);
   },
 };
 </script>

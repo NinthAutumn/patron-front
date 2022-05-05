@@ -80,7 +80,8 @@
       background-color: #fff;
       overscroll-behavior: none;
       max-height:50rem;
-      overflow:auto;
+      overflow-x: hidden;
+      overflow-y: auto;
       z-index: 5;
       background:var(--text-background-color);
       box-shadow:var(--box-shadow);
