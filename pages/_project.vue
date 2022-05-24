@@ -19,14 +19,18 @@ export default {
     return ctx.isMobile ? "Mobile/project" : "DesktopNav";
   },
   components: {},
-  async asyncData({ store, route, redirect }) {
+  async asyncData({ store, route, error }) {
     // if (route.params.project === "user") redirect("/");
-    const res = await store.dispatch(
-      "project/fetchProject",
-      route.params.project
-    );
-    if (res?.project && store.getters["auth/isAuth"])
-      await store.dispatch("subscription/fetchSubscription", res.project.id);
+    try {
+      const res = await store.dispatch(
+        "project/fetchProject",
+        route.params.project
+      );
+      if (res?.project && store.getters["auth/isAuth"])
+        await store.dispatch("subscription/fetchSubscription", res.project.id);
+    } catch (e) {
+      return error({ statusCode: 404, message: "Project not found" });
+    }
   },
 };
 </script>

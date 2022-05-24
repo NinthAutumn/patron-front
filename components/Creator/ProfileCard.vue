@@ -21,7 +21,7 @@
       <div class="creator-profile__methods">
         <div class="creator-profile__method">
           <button-card
-            v-if="!creator.payout_methods.find(item=>item.type=='stripe')"
+            v-if="!creator.payout_methods.filter(item=>!!item).find(item=>item.type=='stripe')"
             color="secondary"
             @click="stripeHandler"
             :icon="{ prefix: 'fab', iconName: 'cc-stripe' }"
@@ -153,9 +153,9 @@ export default {
   }),
   computed: {
     cryptos() {
-      return this.creator.payout_methods.filter(
-        (item) => item.type == "crypto"
-      );
+      return this.creator.payout_methods
+        .filter((item) => !!item)
+        .filter((item) => item.type == "crypto");
     },
   },
   methods: {
@@ -166,7 +166,12 @@ export default {
       await this.$http.$delete(`/v1/creators/payout-method/${payout_id}`);
       this.refreshCreator();
     },
-    async gotoDashboard() {},
+    async gotoDashboard() {
+      const res = await this.$http.$get(`/v1/creators/stripe/login-link`);
+      // return;
+      console.log(res);
+      window.location.href = res.url;
+    },
     async stripeHandler() {
       const res = await this.$http.$get(`/v1/creators/stripe/link`);
       // return;

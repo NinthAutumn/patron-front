@@ -23,6 +23,10 @@ export default async (context, locale) => {
     },
     form: {
       search_placeholder: "Search Creator",
+      first_name_placeholder: "John",
+      first_name: "First Name",
+      last_name: "Last Name",
+      last_name_placeholder: "Doe",
       username: "Username",
       credentials: "Email・username",
       password: "Password",

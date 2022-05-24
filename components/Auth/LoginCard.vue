@@ -2,7 +2,7 @@
   <div class="login-card">
     <card-style class="login-card__form">
       <form @submit.prevent="submitHandler">
-        <h1 class="login-card__title">ログイン</h1>
+        <h1 class="login-card__title">Login</h1>
         <label for>{{$t('form.credentials')}}</label>
         <input
           type="text"

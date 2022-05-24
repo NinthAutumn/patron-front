@@ -1,20 +1,23 @@
 export const state = () => ({
   project: {},
+  feeds: [],
 });
 
 export const getters = {
   getProject: (state) => state.project,
+  getFeeds: (state) => state.feeds,
 };
 
 export const mutations = {
-  setProject: (state, project) => (state.project = project),
+  SET_PROJECT: (state, project) => (state.project = project),
+  SET_FEED: (state, feeds) => (state.feeds = feeds),
 };
 export const actions = {
   async fetchProject({ commit, state }, url) {
     try {
       if (url === state.project.page_url) return { error: "already_called" };
       const project = await this.$http.$get(`/v1/projects/${url}`);
-      commit("setProject", project);
+      commit("SET_PROJECT", project);
       return {
         project,
         error: false,
@@ -24,6 +27,12 @@ export const actions = {
         error: error.response.data.error,
       };
     }
+  },
+  async fetchFeeds({ commit }, { project_id, limit, page }) {
+    const feeds = await this.$http.$get(
+      `/v1/transactions/project/feeds?project_id=${project_id}&limit=${limit}&page=${page}`
+    );
+    commit("SET_FEED", feeds);
   },
   async isPageUrlAvailable({}, url) {
     try {

@@ -9,7 +9,7 @@
           class="feed-item__name"
           v-if="!feed.private"
         >
-          <span style="color:var(--primary);">{{feed.data.name}}</span>
+          <span style="color:var(--primary);">{{feed.data.name||'Anonymous'}}</span>
           tipped
           <strong>${{feed.amount}}</strong> to the project
           <span

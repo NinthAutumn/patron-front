@@ -132,9 +132,9 @@ export default {
   },
   computed: {
     cryptos() {
-      return this.project.payout_methods.filter(
-        (item) => item.type == "crypto"
-      );
+      return this.project.payout_methods
+        .filter((item) => !!item)
+        .filter((item) => item.type == "crypto");
     },
   },
   data: () => ({
@@ -164,6 +164,7 @@ export default {
         privacy: this.form.privacy,
         stripe_intent_id: intent_id,
       });
+      this.$emit("success");
     },
     async submitHandler() {
       this.transaction_code = v1();
@@ -210,9 +211,9 @@ export default {
       }
     },
     loadStripe() {
-      const id = this.project.payout_methods.find(
-        (item) => item.type == "stripe"
-      )?.external_id;
+      const id = this.project.payout_methods
+        .filter((item) => !!item)
+        .find((item) => item.type == "stripe")?.external_id;
       this.stripe = this.$stripe.import(id);
       this.selected_crypto = this.cryptos?.[0]?.id || null;
       const elements = this.stripe.elements();

@@ -48,7 +48,7 @@
       />
       <div
         class="upload-avatar__use"
-        v-text="'アバター編集を投稿'"
+        v-text="'Update Avatar'"
         @click="uploadAvatar"
       ></div>
     </div>

@@ -1,19 +1,19 @@
 <template>
   <div class="onboard-payout">
-    <h1>支援の受け方を選択・記入</h1>
+    <h1>Please Select Your Payment/Payout Method</h1>
     <div class="onboard-payout__actions">
       <div class="onboard-payout__switch">
         <switch-card
           v-model="paypal"
-          label="ペイパル"
+          label="Paypal"
         ></switch-card>
       </div>
       <div v-if="paypal">
-        <h3>ペイパルアカウントでダイレクトに投げ銭を受け取ることができます</h3>
+        <h3>You can Receive Using Paypal Direct</h3>
         <div class="onboard-payout__paypals">
           <div class="onboard-payout__paypal">
             <input
-              placeholder="ペイパルアカウントのEメールアドレス"
+              placeholder="Paypal Account Email Address"
               type="text"
             />
             <div class="onboard-payout__icon">
@@ -21,18 +21,18 @@
             </div>
           </div>
           <div class="onboard-payout__or">or</div>
-          <button-card>ビジネスアカウント</button-card>
+          <button-card>Business Account</button-card>
         </div>
         <div class="onboard-payout__info">
-          オンジンアカウントのEメールと異なることがあります。
-          <br />サブスク・ショップの利用はペイパルビジネスアカウントに繋げる必要があります。
+          May differ from Onjin Account email
+          <br />In order to open Subscriptio nor Shop you must connect with Paypal Business Account.
         </div>
       </div>
 
       <div class="onboard-payout__switch">
         <switch-card
           v-model="stripe"
-          label="ストライプ"
+          label="Stripe"
         ></switch-card>
         <div class="question-tip">
           <fa
@@ -52,7 +52,10 @@
           :icon="{ prefix: 'fab', iconName: 'cc-stripe' }"
         >Connect To Stripe</button-card>
       </div>
-      <button-card style="margin-left: auto; margin-top: 1rem">次へ進む</button-card>
+      <button-card
+        @click="$emit('step','end')"
+        style="margin-left: auto; margin-top: 1rem"
+      >Continue</button-card>
     </div>
     <dialog-card v-if="stripeTip">
       <div class="stripe-tip">
@@ -67,10 +70,7 @@
             <fa icon="times"></fa>
           </div>
         </div>
-        <p>
-          ストライプとはクレジット・デビットカード決済サービスで、Apple
-          Pay・グーグルペイなどの決済方法もサポートされています。
-        </p>
+        <p>Stripe allows you to enable Credit・Debit Card, Apple Pay and Google Pay payment service.</p>
       </div>
     </dialog-card>
   </div>
@@ -80,15 +80,15 @@
 import SwitchCard from "@/components/Style/Switch";
 export default {
   data: () => ({
-    stripe: false,
+    stripe: true,
     stripeTip: false,
-    paypal: true,
+    paypal: false,
   }),
 
   methods: {
     async stripeHandler() {
-      const link = await this.$http.$post(`/v1/creators/stripe/link`);
-      // window.location.href = link.url;
+      const res = await this.$http.$get(`/v1/creators/stripe/link`);
+      window.location.href = res.url;
     },
     stepHandler(step) {
       this.$emit("step", step);

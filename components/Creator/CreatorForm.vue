@@ -32,6 +32,24 @@
               @change="onFileChange"
             />
           </div>
+          <label for>Category</label>
+          <select
+            name
+            required
+            class="input input--normal input--white"
+            v-model="form.category"
+          >
+            <option
+              disabled
+              selected
+              :value="null"
+            >Select Your Project Category</option>
+            <option
+              v-for="category of categories"
+              :key="category.id"
+              :value="category.id"
+            >{{category.name}}</option>
+          </select>
           <label for="creator_name">Your Alias as a Creator</label>
           <input
             type="text"
@@ -105,9 +123,14 @@ export default {
       name: "",
       description: "",
       crowd_funding: false,
+      category: null,
       banner: "",
     },
+    categories: [],
   }),
+  async created() {
+    this.categories = await this.$http.$get(`/v1/projects/categories/list`);
+  },
   methods: {
     onFileChange(e) {
       const file = e.target.files || e.dataTransfer.files;

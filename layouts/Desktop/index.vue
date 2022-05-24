@@ -35,7 +35,7 @@
           />
           <img
             v-else
-            :src="user.avatar"
+            :src="user.avatar||require('~/assets/img/default_profile.svg')"
             @error="handleError"
             class="avatar"
             height="35"

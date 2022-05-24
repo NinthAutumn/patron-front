@@ -11,19 +11,26 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     project: Object,
   },
   data: () => ({
-    feeds: [],
     limit: 15,
     page: 1,
   }),
+  computed: {
+    ...mapGetters({
+      feeds: "project/getFeeds",
+    }),
+  },
   async mounted() {
-    this.feeds = await this.$http.$get(
-      `/v1/transactions/project/feeds?project_id=${this.project.id}&limit=${this.limit}&page=${this.page}`
-    );
+    await this.$store.dispatch("project/fetchFeeds", {
+      project_id: this.project.id,
+      limit: this.limit,
+      page: this.page,
+    });
   },
 };
 </script>

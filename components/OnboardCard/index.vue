@@ -47,6 +47,9 @@ export default {
   methods: {
     setStep(step) {
       this.step = step;
+      if (this.step == "end") {
+        this.$router.go("/creators");
+      }
     },
     backHandler() {
       if (this.step == "project-setting" || this.step == "user-profile") {
@@ -57,7 +60,7 @@ export default {
       if (user) {
         this.$router.push(`/home`);
       } else {
-        this.$router.push(`/creators/${this.project.url}`);
+        this.$router.push(`/creators`);
       }
     },
   },

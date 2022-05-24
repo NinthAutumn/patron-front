@@ -50,6 +50,7 @@
       :project="project"
       @close="support=false"
       v-if="support"
+      @success="successHandler"
     ></lazy-project-support-modal>
   </div>
 </template>
@@ -66,6 +67,14 @@ export default {
     }),
   },
   methods: {
+    async successHandler() {
+      await this.$store.dispatch("project/fetchFeeds", {
+        project_id: this.project.id,
+        limit: 15,
+        page: 1,
+      });
+      this.support = false;
+    },
     onFileChange(e) {
       const file = e.target.files || e.dataTransfer.files;
       // return console.log(this.files);

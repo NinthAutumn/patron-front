@@ -88,7 +88,7 @@
           <button-card
             @click="stepHandler('payout-method')"
             style="margin-left: auto"
-          >次へ進む</button-card>
+          >Continue</button-card>
         </div>
       </div>
     </div>
